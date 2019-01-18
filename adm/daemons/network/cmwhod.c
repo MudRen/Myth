@@ -79,7 +79,7 @@ log_info(string error)
 #endif
 }
 
-static void
+protected void
 send_data(string datagram)
 {
 #ifdef INTERMUD
@@ -92,13 +92,13 @@ send_data(string datagram)
 #endif /* INTERMUD */
 }
 
-static string
+protected string
 header(string op)
 {
    return op + TAB + mudname + TAB + PASSWORD;
 }
 
-static void
+protected void
 set_keepalive_message()
 {
    /* uptime() is an efun that returns # of seconds the driver has been up */
@@ -106,14 +106,14 @@ set_keepalive_message()
      (time() - uptime()) + TAB + GENERATION + TAB + comments;
 }
 
-static void
+protected void
 set_boot_message()
 {
    boot_message = header("U") + TAB + mudname + TAB +
      (time() - uptime()) + TAB + GENERATION + TAB + comments;
 }
 
-static void
+protected void
 set_comments()
 {
    comments = __VERSION__ + "/" + CLIENT_VERSION;
