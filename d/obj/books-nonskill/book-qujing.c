@@ -1,7 +1,7 @@
 inherit ITEM;
 
 #include <ansi.h>
-#include </d/qujing/obstacle.h>
+#include "/d/qujing/obstacle.h"
 
 int do_read(string arg);
 void create()
@@ -36,7 +36,7 @@ int do_read(string arg)
   chapters = (string *)sort_array (chapters, 1);
   ob->set("value", 0);
 
-  if (arg == "new") return 0; 
+  if (arg == "new") return 0;
 //::read();
 
   if (! arg ||
@@ -69,4 +69,3 @@ int do_read(string arg)
   write("\n");
   return 1;
 }
-

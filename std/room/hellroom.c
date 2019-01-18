@@ -8,7 +8,7 @@
 inherit F_DBASE;
 inherit F_CLEAN_UP;
 
-#include <banned.h>
+#include "banned.h"
 nosave mapping doors;
 
 
@@ -16,15 +16,15 @@ int query_max_encumbrance() { return 100000000000; }
 void random_position(int pos,object ob);
 int query_max_items() {return 30;}
 int query_max_datapos()
-{ 
-        
-        if(query("position_max") 
-           && (query("position_max") > 2 && query("position_max") <8 )) 
+{
+
+        if(query("position_max")
+           && (query("position_max") > 2 && query("position_max") <8 ))
            return query("position_max");
          return 3;
 }
 
- 
+
 object make_inventory(string file)
 {
         object ob;
@@ -44,7 +44,7 @@ void reset()
         string *list;
         int i,j,pos;
         object *obs;
-        
+
         //
         // Check loaded objects to match the objects specified in "objects"
         // while query("objects") is
@@ -251,23 +251,23 @@ void setup()
 {
         int level= random(10)+5;
         int num= random(5)+1;
-        
+
          if (query("no_fight"))
         {
                 set("no_steal", 1);
                 set("no_beg", 1);
                 set("no_magic", 1);
         }
-      
+
         set("alternative_die",1);
         set("hellfireroom",1);
-        
+
         if (!query("level")) set("level",level); //房间等级涉及怪等级
         if (!query("npc_num")) set("npc_num",num);//怪的出现数目！
-       
-        
+
+
         seteuid(getuid());
-        this_object()->reset(); 
+        this_object()->reset();
 
 }
 
@@ -281,7 +281,7 @@ void init()
        add_action("do_cast","cast");
        add_action("do_exert","exert");
        add_action("block_cmd","",1);
-    
+
      if(this_object()->query("zuandoors")) add_action("do_zuan","zuan");
      this_object()->init2();
 }
@@ -332,7 +332,7 @@ int do_cast(string arg) {
     command("cast transfer");
 }
 int do_exert(string arg) {
-    
+
     if(this_object()->query("exert_closed")) return 0;
     if(!arg) return 0;
     if(arg !="recover" && arg != "heal" ) return 0;
@@ -345,17 +345,17 @@ void alternative_die(object who)
      object killer,corpse;
      killer = who->query_temp("last_damage_from");
 
-  if (userp(who)) 
+  if (userp(who))
   {
             message_vision("$N死了。\n",who);
-            who->set("kee",10);        
+            who->set("kee",10);
             who->set("sen",10);
             if(who->query("eff_kee")<10) who->set("eff_kee",10);
             if(who->query("eff_sen")<10) who->set("eff_sen",10);
             who->set("env/invisibility",1);
             who->set_temp("hell_died",1);
             if(!killer) killer=who;
-            
+
             if( this_object()->query("corpse_make"))
                {
             if( objectp(corpse = CHAR_D->make_corpse(who, killer)) )

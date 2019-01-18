@@ -6,13 +6,10 @@
 
 //#pragma save_binary
 
-// #ifndef __SENSIBLE_MODIFIERS__
-// #define nosave static
+#ifndef __SENSIBLE_MODIFIERS__
+#define nosave static
 // #define protected private
-// #endif
-// #undef __SENSIBLE_MODIFIERS__
-
-#undef _NO_ANSI___
+#endif
 
 #define JOB_OB(x)		("/d/job/"+x+"/job")
 #define CITY_OB(city,room)   ("/d/"+city+"/"+room)
@@ -61,7 +58,7 @@
 #define WSAVE_D                "/adm/daemons/w_saved"
 #define BAN_D		 "/adm/daemons/band.c"
 #define MONEY_D		 "/adm/daemons/moneyd.c"
-#define XYJTIME_D          "/adm/daemons/xyjtimed.c" 
+#define XYJTIME_D          "/adm/daemons/xyjtimed.c"
 #define TOPTEN_D	        "/adm/daemons/toptend"
 #define TASK_D                  "/adm/daemons/questd"
 #define CRON_D                  "/adm/daemons/cron"
@@ -170,7 +167,7 @@
 #define STORY_D	        "/adm/daemons/storyd.c"
 // Profiling switches
 //
-// If you changed any of these defines, you'll need reboot to make it 
+// If you changed any of these defines, you'll need reboot to make it
 // in effect.
 
 #define PROFILE_COMMANDS
