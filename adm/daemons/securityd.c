@@ -81,7 +81,7 @@ int	save();
 
 void create()
 {
-	int i;
+	// int i;
 
 	seteuid(getuid());
 	restore();
@@ -89,8 +89,8 @@ void create()
 
 int restore()
 {
-	string item, val;
-	string sum, sec;
+	// string item, val;
+	// string sum, sec;
 	string *wizlist, wiz_name, wiz_level;
 	int res;
 	int i;
@@ -337,10 +337,10 @@ void remove(string euid)
 // an object.											      -	Annihilator
 int valid_read(string file, mixed user,	string func)
 {
-	string euid, status, *path, dir;
-	string *arre, *arrt, *arrl;
-	int i;
-	int valid;
+	string euid, status;
+	// string *arre, *arrt, *arrl;
+	// int i;
+	// int valid;
 
 	if (! objectp(user))
 	{
@@ -406,7 +406,7 @@ int valid_read(string file, mixed user,	string func)
 int valid_write(string file, mixed user, string	func)
 {
 	string euid, status, *path, dir;
-	string *arre, *arrt, *arrl;
+	string *arre, *arrt;
 	int i;
 	int valid;
 
@@ -604,7 +604,7 @@ int valid_grant(object ob, string min_level)
 	string cmd;
 	string *gr;
 	object call_ob;
-	string ip = query_ip_number(ob);
+	// string ip = query_ip_number(ob);
 
 	if (! objectp(ob) || ! objectp(this_player(1)))
 		return notify_fail("没有对象呼叫这个命令。\n");

@@ -1,5 +1,5 @@
 /adm/daemons/securityd
-/adm/daemons/band
+#/adm/daemons/band
 /adm/daemons/virtuald
 /adm/daemons/logind
 /adm/daemons/cmd_d
@@ -10,7 +10,7 @@
 /adm/daemons/channeld
 /adm/daemons/monitord
 /adm/daemons/natured
-/adm/daemons/network/dns_master
+#/adm/daemons/network/dns_master
 /adm/daemons/weapond
 /adm/daemons/rankd
 /adm/daemons/combatd

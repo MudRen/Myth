@@ -144,8 +144,7 @@ varargs int do_channel(object me, string verb, string arg, int emote)
     string *tuned_ch, who, msg, msgwiz;
     int is_player;
     string imsg = 0, local;
-    string party, family, fname;
-    int time,count,count1,last_chat;
+    string party;
 	int block_time = 3600;
 
     // Check if this is a channel emote.
@@ -287,6 +286,7 @@ varargs int do_channel(object me, string verb, string arg, int emote)
     }
 #endif
 #ifdef XYJ
+        int time, count, last_chat, count1;
         //temporary block chat flooding.
         time = time();
         if ((me->query("channel/chat_block") && (time-me->query("channel/chat_block"))<0 ))

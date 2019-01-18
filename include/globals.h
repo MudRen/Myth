@@ -6,12 +6,12 @@
 
 //#pragma save_binary
 
-#ifndef __SENSIBLE_MODIFIERS__
-#define nosave static
-#define protected private
-#endif
+// #ifndef __SENSIBLE_MODIFIERS__
+// #define nosave static
+// #define protected private
+// #endif
+// #undef __SENSIBLE_MODIFIERS__
 
-#undef __SENSIBLE_MODIFIERS__
 #undef _NO_ANSI___
 
 #define JOB_OB(x)		("/d/job/"+x+"/job")
