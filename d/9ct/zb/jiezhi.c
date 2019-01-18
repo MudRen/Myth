@@ -1,0 +1,22 @@
+// “ı—ÙΩ‰÷∏ by Calvin
+
+#include <armor.h>
+#include <ansi.h>
+
+inherit FINGER;
+
+void create()
+{
+        set_name(HIG"“ı—ÙΩ‰÷∏"NOR, ({ "yinyang jiezhi", "jiezhi", "ring" }));
+        set("weight", 400);
+        if (clonep())
+                set_default_object(__FILE__);
+        else {
+                set("unit", "÷ª");
+             set("value", 4000);
+                set("material", "gold");
+                set("armor_prop/armor", 50);
+                set("armor_prop/spells", 40);
+        }
+        setup();
+}       

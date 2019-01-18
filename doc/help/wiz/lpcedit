@@ -1,0 +1,313 @@
+
+ÈçºÎ½« LPC ³ÌÊ½×î¼Ñ»¯ 
+
+(MudOS 0.9.x °æ) 
+(10/29/94) 
+
+0. ¼ò½é 
+
+ÎÒÐ´ÕâÆªÎÄÕÂµÄÔ­ÒòÊÇÎÒ×¢Òâµ½ LPmud Ô½À´Ô½ÇãÏò¸´ÔÓ»¯¼°Íæ¼ÒÇý¶¯µÄ¹¦ÄÜ. 
+ÕâÊÇºÃÏÖÏó, µ«ÒòÎª LPC ÔË×÷µÄ·½·¨ (Ò»´ÎÖ»½âÒëÒ»²¿·ÝµÄ³ÌÊ½) Ð´²»ºÃµÄ³Ì 
+Ê½Âë²»µ«»áÊ¹µÄÕû¸ö mud ÂýÏÂÀ´, Ò²»áÊ¹ÔÚ mud ÉÏµÄÍæ¼Ò¸Ðµ½ 'lag'. 
+
+ÒòÎªÈç´Ë, ÎÒ¾ö¶¨È¥ÕÒ³ö·½·¨½«Ò»Ð©³£ÓÃµÄ¹¤×÷Ð´³ÉÓÐÐ§ÂÊµÄ³ÌÊ½²¢¼ÇÂ¼ÏÂÀ´ 
+ÒÔ¹©²Î¿¼. ÎÒ¼ÙÉè¶ÁÕßÒÑÓÐÒ»Ð© C »ò LPC µÄ³ÌÊ½¾­Ñé. µ«ÊÇ, Èç¹ûÄãÊÇÐÂÊÖ, 
+ÎÒÒÀÈ»½¨ÒéÄã½«±¾ÎÄ¶ÁÍêÒò²ÅÄÜÔÚÒ»¿ªÊ¼¾ÍÑ§µ½ÕýÈ·µÄ³ÌÊ½Ð´·¨. 
+
+ËäÈ»ÎÒµÄÑÐ¾¿ÊÇ¹Øì¶ MudOS 0.9 µÄ driver, µ«Ðí¶à¾­Ñé»¹ÊÇÄÜÔÚÆäËü LP v3 
+ÐÍµÄ driver ÏÂÊ¹ÓÃ. µ«Õâ²¢²»±£Ö¤ÕâÀïËù½²µÄÔÚ·Ç MudOS driver ÏÂÊÇÍêÈ« 
+ÕýÈ·µÄ, (±È·½Ëµ Amylaar µÄ 3.2@22 driver), ÒòÎª¸÷ driver ³ÌÊ½ÂëÒÑ¾­ 
+ÓÐÏàµ±´óµÄ²îÒìÁË. 
+
+ÒÔÏÂµÄ³ÌÊ½Âë, ÎÒÃÇ½«¼ÙÉèÕâÐ©¶¨Òå: 
+int i, j, max, bitfield
+object *list
+string *arr, name
+
+LPC, Ïñ C Ò»Ñù, ÓÐÖ§Ô® '¶¯Ì¬ÅäÖÃ'. Ò²¾ÍÊÇ driver Ö»ÓÐÔÚÐèÒª 
+Ê±²Å»á½«¼ÇÒäÌå·Ö¸øÒªÓÃµÄÔËËã (Íê³Éáá»áÊÕ»Ø). ¸ú C ²»Í¬µÄÊÇ, LPC »á×Ô¶¯ 
+µØÔÚÄãÊ¹ÓÃÍêááÊÕ»Ø·ÖÅäµÄ¼ÇÒäÌå (i.e. µ±Ã»ÓÐ LPC ³ÌÊÔÂëÔÚÊ¹ÓÃÊ±) - ÓÖ½Ð 
+'Çå³ýÊÕ¼¯'. ×Ö´® (string), ÕóÁÐ (array) ºÍ mapping ¶¼ÊÇ'¶¯Ì¬'´¦ÀíµÄ. 
+
+ËäÈ» '¶¯Ì¬ÅäÖÃ' ÔÚ½á¹¹»¯³ÌÊ½Àï·Ç³£ÓÐÓÃ, µ«Ïà¶ÔµÄËüÒ²Ê¹ÓÃÁË·Ç 
+³£¶àµÄ CPU Ê±¼ä. ±¾ÎÄµÄÄ¿µØÖ®Ò»¾ÍÊÇÒª½ÌÄãÈçºÎÕýÈ·µÄÔËÓÃ '¶¯Ì¬ÅäÖÃ' 
+µÄºÃ´¦¶ø²»ÒªÀË·ÑÁËÕâÏî¹¦ÄÜ. 
+
+1. GENERAL POINTS 
+
+ÔÚÎÒ¿ªÊ¼½ÌÄãÈçºÎÊ¼Ä³¶Î³ÌÊ½Âë¼ÓËÙÔË×÷Ç°, ÎÒÌá³öÒÔÏÂÒ»Ð©¹Øì¶µçÄÔ³ÌÊ½Ð´×÷ 
+
+µÚÒ»Ìõ, 'µçÄÔ»¨ 80% µÄÊ±¼äÖ´ÐÐ 20% µÄ³ÌÊ½' ('80% of the time spent 
+executing an algorithm is in 20% of the code'), »òÊÇËùÎ½µÄ '80/20' ·¨ 
+Ôò. (ÓÐÐ©Ëµ·¨ÊÇ 75/25 »ò 90/10). Õâ¸ö¾­Ö¤ÊµµÄÊÂÊµ¿ÉÒÔÓÐÐ§µÄ°ïÖúÄãÐ´ 
+LPC ²»Òª»¨Ì«¶àÊ±¼äÊÔÖø½«ÄãËùÓÐµÄ LPC ³ÌÊÔÂë×î¼Ñ»¯, Äã²»»áÓÐÄÇ÷á¶àµÄÊ± 
+¼ä. ½«¾«Éñ·ÅÔÚÒ»Ð©½Ï³£ÓÃ, Ö´ÐÐ´ÎÊý½Ï¶àµÄÇø¶Î, Èç for-loops µÈ. 
+
+µÚ¶þÊÇ, ÈçºÎÑ¡ÓÃÕýÈ·µÄ algorithm. ´ó¶àÊýµÄÊ±¼ä, µ±Ò»¸ö¼òµ¥µÄ algorithm 
+¾Í×ã¹»Ê±, ÈËÃÇ»áÑ¡ÔñÒ»¸ö¸´ÔÓ algorithm, ÌØ±ðÊÇµ±³ÌÊ½´¦ÀíÉÙÊý×ÊÁÏÊ±, ¼òµ¥ 
+µÄ algorithm Í¨³£±È½ÏÓÐÐ§ÂÊ. ÒªÄÜÔÚ¼ò»¯¼°Ð§ÂÊÉÏ×÷Ò»·¬È¡Éá. 
+
+ÒòÎª´ó²¿·ÝµÄ driver ¶¼Ã»ÓÐ¶Ô LPC Âë×÷×î¼Ñ»¯µÄ¹¦ÄÜ (±È·½ËµÖØÐ´ expression 
+»ò»ØÈ¦ strength-reduction), ÄãÄÜ°ïµÄÃ¦¾ÍÊÇÓÐÖÇ»ÛµÄÐ´×Ô¼ºµÄ³ÌÊ½Âë. 
+
+Ò»¸ö¼ÓËÙµÄ·½·¨ÊÇ½«Ò»¸ö¹²ÓÃµÄ³£Êý/º¯Ê½ÒÆµ½»ØÈ¦»ò»ØÈ¦²âÊÔÖ®Íâ, ²¢Ê¹ÓÃÒ» 
+¸öÔÝÊ±µÄ±äÊý. ×î³¤¼ûµÄ¾ÍÊÇÔÚ while/for condition (q.v) Ê±Ê¹ÓÃ 'sizeof(arr)' 
+ÔÚÆäËü×´¿öÏÂ, ÓÐ¿ÉÄÜÄ³¸öº¯Ê½Ã¿´Î¶¼»áÔÚ»ØÈ¦Àï±»ºô½Ð, µ«ÄÇ¸öº¯Ê½Ã¿´Î¶¼»á 
+´«»ØÒ»¸öÏàÍ¬µÄÖµ - Èç¹ûÕæÊÇÕâÑù, ¾ÍÔÚ»ØÈ¦ÒÔÍâ½«Õâ¸öÖµÉè¶¨³ÉÒ»¸ö±äÊý, ²¢ 
+ÔÚ»ØÈ¦ÄÚÊ¹ÓÃÕâ¸ö±äÊý. ÀýÈç: 
+
+for ( i = 0; i < max; i++) 
+if ( listi == some_condition ) 
+do_something_with( listi, this_player()->query(name) )
+
+¼ÙÉè name ÊÇ²»±äµÄ, ÔòÒÔÏÂµÄ·½·¨»á±È½ÏºÃ: 
+
+for ( i = 0; i < max; i++) 
+if ( listi == some_condition ) 
+do_something_with( listi, name )
+
+ËäÈ»ËµºÃµÄ³ÌÊ½¸ñÊ½²¢²»»áÕæµÄ¼Ó¿ì±àÒëµÄËÙ¶È, µ«Ò»¸ö¼òµ¥ºÃ¶ÁµÄ³ÌÊ½±È½Ï 
+ºÃÐÞ¸Ä¼° debug. ´ó¶àÊýµÄÈË¶Ô³ÌÊ½µÄ¸ñÊ½ÓÐ²»Í¬µÄ¿´·¨, ËùÒÔÎÒÔÚÕâÀïÒ²²» 
+»áÇ¿ÆÈ¶ÁÕßÊ¹ÓÃÎÒµÄ¸ñÊ½, ÎÒÖ»Ïë¸æËßÄã, Ñ¡ÔñÒ»¸öÄãÏ²»¶µÄ¸ñÊ½, È»áá±£³Ö 
+ÏÂÈ¥. 
+
+2. ×ÊÁÏÐÍÌ¬ (DATA TYPES) 
+
+LPC ÖÁÉÙÓÐÒÔÏÂµÄ×ÊÁÏÐÍÌ¬: int, string, object, mixed, mapping. 
+ÓÉÒÔÉÏËù×é³ÉµÄÕóÁÐÒ²ÊÇ¿ÉÄÜµÄ. 
+
+2.1 ÕûÊý (INT) 
+
+ÕûÊý×ÊÁÏÐÍÌ¬Ê¹ÓÃÆðÀ´·Ç³£µÄÓÐÐ§ÂÊ, ÒòÎª integer ²»ÐèÒª¶¯Ì¬ÅäÖÃ. 
+Ê¹ÓÃ bitfields (e.g. hand-coded with #defines, (Ä£Äâ ANSI C µÄ enum's)), 
+Äã¿ÉÒÔ´¢´æ¶àÖÖµÄ flags ×ÊÁÏ. ÕâÑù»á±È½«×ÊÁÏ´æ³É bit size À´µÄ¿ì, ÒòÎª 
+bitfields Ö»ÐèÒª 32 bits. 
+ÒÔÏÂÊÇ´¦Àí integer bit fields µÄ·¶Àý³ÌÊ½: (¼ÙÉè VALUE Îª 1,2,4,8, etc.) 
+
+bitfield != VALUE
+// set bit VALUE 
+bitfield &= ~VALUE
+// reset bit VALUE 
+bitfield & VALUE // test bit VALUE 
+
+Èç¹ûÄãÒªÉè bit n, ½« VALUE È¡´úÎª (1 >< n) 
+
+2.2 ×Ö´® (STRINGS) 
+
+×Ö´®ÊÇ×î³£ÓÃµÄ×ÊÁÏÐÍÌ¬, µ«ËüÐèÒª '¶¯Ì¬ÅäÖÃ'. ³£Êý×Ö´®(constant string) 
+(i.e, µ¥´¿µÄ 'write' ÐðÊö) ÊÇ´æ·Åì¶Ò»¸ö '×Ö´®±í' Àï, ËùÒÔÈç¹ûÒªÓÐ¶àÖØµÄ 
+copy Í¨³£²»ÐèÒª¶àâÅµÄ¼ÇÒäÌå. ×Ö´®µÄ¼Ó·¨ (Ê¹ÓÃ + ·ûºÅ) ¾ÍÊÇÒ»¸ö·Ç³£ºÄÊ±µÄ 
+ÔË×÷ - Ã¿¼ÓÒ»¶Î×Ö¾ÍÒªÅäÖÃ¼ÇÒäÌåÒ»´Î. Í¨³£ÎÒÃÇ»áÕâÑùÐ´: 
+
+write(this is a forest\n + 
+"and is really boring.\n" + 
+"You are feeling sleepy\n")
+
+ÕâÊÇ×îÔãµÄ·½·¨À´Ð´Ò»¸ö³£Êý×Ö´® - µ±Õâ¸ö object (Îï¼þ) ±»±àÒëÊ±»á·Ç³£µÄÂý, 
+¶øÇÒÒ²Ã»ÓÐÓÐÐ§ÂÊµÄÔËÓÃ¼ÇÒäÌå. ÖµµÃ×¢ÒâµÄÊÇ, ÔÚ MudOS 0.9.15 [ÎÒÃÇÓÃ 
+0.9.19.x] ÔÚ×Ö´®¼Ó·¨Àï²»Ò»¶¨ÒªÓÃ '+' Õâ¸ö·ûºÅÀ´´ú±í - µ«ÕâÑùÖ»ÊÇ½ÚÊ¡ÁËÔ­ 
+Ê¼³ÌÊ½µÄ´óÐ¡ - Ëü»¹ÊÇÐèÒªÊ¹ÓÃ¶¯Ì¬¼ÇÒäÌå·ÖÅäÀ´Ê¹ÓÃÃ¿Ò»¶ÎÔÚ   ÀïµÄ×Ö´®. 
+
+write(\ 
+this is a forect\n\ 
+and is really boring.\n\ 
+You are feeling sleepy.\n\ 
+")
+
+ÕâÑùµÄ»°ËùÓÐµÄÎÄ×Ö¶¼´æÔÚÒ»Æð. ÄãÍ¨³£ÄÜÓÃÕâÖÖ·½·¨´æÈ¡Ò»Ò³ÒÔÉÏµÄÎÄ×Ö, ³¬¹ý 
+Õâ¸öÊýÁ¿Ê±ÄãµÄ parser ¿ÉÄÜ»áÇºµ½, ÊÔÖø½«ÄãµÄÎÄ×Ö·Ö¶Î, ²¢Ê¹ÓÃ·Ö¿ªµÄ write 
+statement. 
+
+
+
+write( @ENDMESSAGE 
+This is a forect 
+and is really boring 
+You are feeling sleepy. 
+ENDMESSAGE 
+)
+
+('ENDMESSAGE' ÊÇÓÃÀ´×÷Îª·Ö½çµãµÄ, ¿ÉÒÔÊÇÈÎºÎ²»ÔÚ main body(?) µÄÈÎºÎ×Ö´®, 
+¶øÇÒËüÒ»¶¨ÒªÔÚÒ»ÐÐµÄ×î¿ª¶ËÊ¹ÓÃ, Òª²»È»Ëü²»»á±»µ±×ö 'Ñ¶Ï¢½áÊø' µÄ¼ÇºÅ.) 
+
+write(Your name is  + this_player()->query(name) + \n + 
+"and your level is " + this_player()->query("level") + "\n")
+
+Èç¹ûÄãµÄ driver ÓÐ printf(), ÊÔÖøÓÃÒÔÏÂµÄ·½·¨: 
+printf(Your name is %s\nand your level is %d\n, 
+this_player()->query(name), this_player()->query(level) )
+
+ÆäËü»¹ÓÐºÜ¶àÀàËÆµÄÀý×Ó, so you get the general idea. 
+
+µ«²»ÒªÎó½âÎÒµÄÒâË¼, ×Ö´®¼Ó·¨ÊÇºÜ³£ÓÃµÄ, ËùÒÔ²»ÒªÊÔÖøÈ¥ÓÃÒ»Ð©ºÜ³¤µÄÔË×÷»ò 
+¼¼ÇÉÀ´±ÜÃâÓÃµ½×Ö´®¼Ó·¨. (ÒòÎªÕâÍ¨³£»á±ÈÊ¹ÓÃ×Ö´®¼Ó·¨»¹Âý). 
+
+2.3 ¸¡µã (FLOATS) 
+
+0.9.15 ÒÔááµÄ driver ¶¼ÓÐÖ§Ô®¸¡µã(floating point)×ÊÁÏÐÍÌ¬. ÔÚÐû¸æ±äÊýÊ±ÓÃ 
+'float' Õâ¸ö keyword. (¶ÔÐ´ C ³ÌÊ½µÄÈËÀ´½², ÕâºÍ C µÄ 'double' type ÏàÍ¬) 
+
+Ïñ cos, sin, (ºÍÀàËÆµÄÔËËã), ln, ºÍ sqrt (Æ½·½¸ù) µÈµÄµÄÔËËãº¯ÊýÒ²¿ÉÒÔÊ¹ 
+ÓÃ. ÕâÖÖ×ÊÁÏÐÍÌ¬¿ÉÒÔÔÚ±à¼­Ê±ÔÝÊ±Ìø¹ý, µ«ÎÒ¿´²»³öÀ´ÕâÓÐÊ²÷áÐèÒª. 
+
+¸¡µãµÄÔËËã±ÈÕûÊýÂý¡¢ËùÒÔÄÜÓÃÕûÊýÔËËãÊ±¾¡Á¿²»ÒªÓÃ¸¡µãÔËËã¡£ÐèÒªÓÃ 
+µ½¸¡µãÔËËãÊ±, ¾¡Á¿ÏÈ°ÑËüÃÇËã³öÀ´ÒÔ»Ø±ÜÖØ¸´µÄÔËËã(Õâµã¶Ôì¶ÈÎºÎ³ÌÊ½¶¼Í¨). 
+
+2.4. ÕóÁÐ (ARRAY) 
+
+ÕóÁÐÊÇ·Ç³£ÓÐÓÃµÄ, µ«¸ú×Ö´®Ò»Ñù, ²»µ±µÄÊ¹ÓÃ»áÔì³ÉµÍÐ§ÂÊµÄ³ÌÊ½. 
+
+Ò»¸öÔÚ»ØÈ¦ÄÚÓÐÔö¼Ó»ò³ýµôÏîÄ¿µÄ»ØÈ¦Í¨³£ÊÇ½ÏÂýµÄ. ½â¾öµÄ·½·¨ÊÇÊÊµ±µÄÔËÓÃ 
+¼ÇÒäÌåÔ¤ÏÈÅäÖÃ¡£ 
+
+Õª×Ô TMI-2 µÄ /adm/daemons/cmd_d.c : 
+
+for (i = 0; i < sizeof(bin_ls); i++) { 
+if(sscanf(bin_lsi, _%s.c, tmp) == 1) 
+result += ({ tmp })
+} 
+
+ÕâÀï, ²¢²»ÊÇËùÓÐµÄÏîÄ¿¶¼ÓÐÑ¡µ½, ±»Ñ¡µ½µÄÒ²ÊÇÔÚ±»ÐÞ¸Ä¹ýááÔÙ·Åµ½×îáá 
+µÄÕóÁÐÖÐ. 
+
+
+while (i--) { // Ê¹ÓÃ 'while' µÄÔ­ÒòÇë²Î¿¼ÏÂÃæ 
+if(sscanf(bin_lsi, _%s.c, tmp) == 1) 
+} 
+
+ÒòÎªÎÒÃÇÖªµÀ½á¹ûÒ»¶¨ÊÇ <= sizeof(bin_ls), ÎÒÃÇ¾ÍÖ»ÅäÖÃÕâ÷á¶à¿Õ¼ä. È» 
+ááÔÙÒÀÐèÇóÔö¼ÓÏîÄ¿. ×îáá, ÔÚÎÒÃÇÃÇÊ¹ÓÃ½á¹ûÇ°, ½«ÕóÁÐµ÷µ½ÕýÈ·µÄ´óÐ¡. 
+(Ê¹ÓÃ 0..j-1 ÔË×÷). 
+
+Õ 
+
+Ô¤ÏÈÅäÖÃ×î´óµÄÓÅµã¾ÍÊÇÔÚÓÃÔ¤ÏÈÅäÖÃÊ±, ´¦ÀíÊ±¼äºÍÏîÄ¿ÊýÄ¿³ÊÏßÐÔÕý±È (linear) 
+¶øÓÃ += µÄÕóÁÐ´¦ÀíºÍ´¦ÀíÊ±¼ä³ÉÖ¸Êý±ÈÔö¼Ó (exponential). 
+
+2.5. MAPPINGS 
+
+Mappings ¾ÍÊÇÁ¬½ÓÐÔµÄÕóÁÐ - ÄÜÓÃ»ù±¾×ÊÁÏÐÍÌ¬(int, string, »ò object) 
+À´×öË÷ÒýµÄ×ÊÁÏ½á¹¹¡£ÒÔ×ÊÁÏ½á¹¹À´Ëµ, ËüÍ¨³£±ÈÕóÁÐÀ´µÄÓÐÐ§ÂÊ, ²¢¿ÉÒÔÓÃÀ´ 
+Ä£Äâ C ÀïµÄ 'structs' ÐðÊö. 
+
+»ùì¶ mappings ÄÚ²¿´¢´æµÄ·½Ê½, Ô¤ÏÈÅäÖÃµÄ mapping ±È½ÏÓÐÐ§ÂÊ. 
+Èç¹ûÄãÒÑ¾­ÖªµÀ mapping ÀïµÄÔªËØ»á±£³ÖÔÚ x ¸ö (»¹¿ÉÒÔÔÙÔö¼Ó), ¶øÇÒ²»»áÒò 
+ÎªÊ¹ÓÃ map_delete ¶øÊ¹×ÜÔªËØµÍì¶ x ¸ö, Ôò´Ë·¨ÌØ±ðÓÐÐ§ÂÊ. (±È·½Ëµ, µ±Ò»¸ö 
+mapping ÒÑÔ¤ÏÈÅäÖÃÁË x ¸öÔªËØ, ÔÚ´ó¶àÊýµÄÔªËØ¶¼±»ÓÃ map_delete É¾³ýáá, 
+Äã½«»áÀË·ÑºÜ¶à¼ÇÒäÌåÒòÎª map_delete ½«²»»á°ÑÔ¤ÏÈÅäÖÃµÄ mapping ÀïÃ»ÓÐÓÃ 
+µÄ¼ÇÒäÌåÊÍ·Å³öÀ´.) 
+
+Ò»¸ö³£¼ûµÄÔ¤ÏÈÅäÖÃ·½·¨¿ÉÔÚ emote daemon »òÏñ /std/user (»ò /obj/player) 
+ÀïµÄ±ê×¼Îï¼þÖÐÕÒµ½. ¶Ôì¶Ç°Õß, Èç¹ûÄãÒÑ¾­ÓÐ 200 ¸ö×óÓÒµÄÏîÄ¿, 
+²»ÒªÓÃÏÂÁÐ·½·¨À´¸ñÊ½ÄãµÄ mapping: 
+
+
+
+
+
+3. ¿ØÖÆ³ÌÐò (CONTROL FLOW) ÒÔ¼° »ØÈ¦ (LOOPING) 
+
+ÔÚÒ»¸öÍêÕûµÄ LPC ³ÌÊ½ÖÐ, ¿ØÖÆ³ÌÊ½Ö´ÐÐµÄ³ÌÐò (ÓÉ²âÊÔ, ÒÔ¼°²¿·ÝµÄ»ØÈ¦Ëù 
+×é³É) ¿ÉÒÔÒòÎªÕýÈ·µÄÊ¹ÓÃ²»Í¬µÄÐÎÊ½¶ø±äµÃ±È½ÏÓÐÐ§ÂÊ. 
+
+3.1. WHILE 
+
+×î¼òµ¥µÄ (Ò²ÊÇÔÚ¼ò»¯ÐÍÀï×î¿ìµÄ) »ØÈ¦Ê¹ÓÃ·½Ê½. 
+
+for ( i = 0 ; i < sizeof(list) ; i++ ) 
+do_something_with_item( listi )
+
+ÕâÊÇ·Ç³£µÄÃ»ÓÐÐ§ÂÊ, ÒòÎª sizeof(list) µÄÖµÃ¿´Î¶¼Òª±»ÖØÐÂ¼ÆËã³öÀ´ (²Î¿¼ 
+ÉÏÃæµÄ GENERAL POINTS Ò»½Ú). Èç¹ûÄãÏë½«Õû¸ö list ·´¹ýÀ´ÅÅÁÐ, ÊÔÖøÊ¹ÓÃÒÔ 
+
+// slight performance gain 
+while ( ++i < max ) //evaluate and increment at same time 
+do_something_with_item(listi)
+
+Èç¹ûË³ÐòÃ»ÓÐÊ²÷áÌ«´óµÄ¹ØÏµ, ÒÔÏÂÊÇ×î¿ìµÄ·½Ê½: 
+
+while (i--) 
+do_something_with_item(listi)
+
+Õâ¾ÍÊÇ '¼òµ¥µÄµ÷¼þ while »ØÈ¦' ('simple condition while loop'). ºÍÏÂÁÐµÄ 
+ÊµÔÚÊÇÃ»Ê²÷áÌ«´óµÄ²»Í¬. 
+
+for ( i = sizeof(list) ; i-- ; ) 
+
+ÒÔ¼°Ïà¶ÔµÈµÄ while »ØÈ¦. µ«»¹ÊÇÓÐÉÙÐíÀûÒæ¿ÉµÃ. 
+
+3.2. FOR 
+
+×î³£¼ûµÄ»ØÈ¦½á¹¹Ö®Ò», ÕâÔÚµ±ÄãÃ¿´Î¶¼ÐèÒªÔÚ»ØÈ¦½áÊöÇ°Ö´ÐÐÄ³¸ö±È½Ï¸´ÔÓµÄ 
+¶¯×÷Ê±·Ç³£ÓÐÓÃ. Èç¹ûÖ»ÊÇÊ¹ÓÃ¼òµ¥µÄÖ¸ÊýÔö¼Ó»ò¼õÉÙ, ÓÃ 'while' ÐðÊö»á±È½Ï diffculty += diffculty*(int)victim->query(aim_difficulty/+loc)/100
+Ö 
+skill /= 10
+skill += (int)me->query_stat(int) * 2 + (int)me->query_stat(kar)
+skill -= (int)victim->query_stat(int) * 2 + (int)victim->query_stat(kar)
+
+// if( random(100)  30 && !me-query(npc) ) return 0
+
+if( random(skill) < diffculty ) return 0
+return (int)call_other( this_object(), hit_ + loc, me, victim )
+} 
+
+ÔÚ¿¼ÂÇ³ÌÊ½×î¼Ñ»¯Ê±£¬ÏÈÏëÏëÕâ¶Î³ÌÊ½±»Ê¹ÓÃµÄÆµÂÊÓÐ¶à¸ß£¬Èç¹ûÊÇ 
+Ê¹ÓÃÆµÂÊºÜ¸ßµÄ³ÌÊ½£¬ÄÇ¾ÍÒª¶à»¨Ð©ÐÄÁ¦×¢Òâ×î¼Ñ»¯¡£Ò»°ãÊ¹ÓÃÆµÂÊ 
+½Ï¸ßµÄ³ÌÊ½´óÂÔÊÇ/adm/, /cmds/, /stdÏÂµÄ³ÌÊ½£¬²»¹ýÕâ²»ÊÇÒ»°ã 
+Î×Ê¦¿ÉÒÔ¶¯µÄ£¬ÁíÍâ¹«»áµÄÒ»Ð©³ÌÊ½£¬ÎäÆ÷µÄÌØ¹¥¡¢NPCµÄtactic£¬ÒÔ 
+¼°Ò»Ð©init,relay_messageµÄ³ÌÊ½µÈµÈ¡£ÕâÐ©¶¼ÊÇÊ¹ÓÃÆµÂÊºÜ¸ßµÄ³Ì 
+Ê½£¬Çë´ó¼Ò¶à»¨Ò»Ð©ÐÄÁ¦¡£ 
+
+Eastern Story@Yueh 1996/3/2 
+
+
+ºÃ.
+Èç¹û '½áÊöÔË×÷' (ending operation) ±È½Ï¸´ÔÓ, ÔòÒÔÏÂµÄÍ¨ÓÃÀý×Ó:
+for ( initialise ; test ; final ) {
+main body
+}
+initialize
+while ( test ) {
+main body
+final
+}
+3.3. ¿ª¹Ø (SWITCH)
+switch ÐðÊöÓ¦¸Ã¾¡¿ÉÄÜµÄÓÃÀ´È¡´ú 'if-then-else' ÐÍ½á¹¹. ÒòÎªÐÂµÄ driver
+¶¼ÓÐ¶Ô switch ÐðÊö×÷Ïàµ±³Ì¶ÈµÄ¼ò»¯. ÁíÒ»·½Ãæ, ÓÃ switch ÐðÊöµÄ³ÌÊÔÂë¿´À´
+Ò²±È½Ï 'Ç¬¾»'.
+ÓÃ switch ÐðÊýµÄÁíÒ»¸öÓÅµãÊÇ `×´¿ö·¶Î§' (case range) µÄÖ§Ô®. (Ò»¸ö C Ã»ÓÐ
+µÄÌØÉ«). Èç¹ûÄãµÄ²âÊÔÉè¶¨ÈçÏÂÃæµÄ·¶Î§:
+case 1: case 2: case 3:
+case 1..3:
+¿ÉÄÜ±È½ÏÓÐÐ§ÂÊ (ÖÁÉÙ×ÖÉÙ´òÒ»Ð©)
+4. ½áÂÛ
+ÎÒÈ·¶¨Õâ·ÝÎÄ¼þÖÐÒ»¶¨ÓÐ´íÎó, µ«ÊÇÈË²»ÊÇÍêÃÀµÄ.
+ÒÔÏÂµÄÈË¶Ô±¾ÎÄµÄ 1.1 °æÌá³öÎÊÌâ, Òâ¼û:
+Luke Zak.
+³ÌÊ½µÄ×î¼Ñ»¯
+==============
+ÔÚoptimizing_codeÀïÒÑ¾­Ì¸µ½ÁËÒ»Ð©×î¼Ñ»¯µÄ¼òµ¥×¢ÒâÊÂÏî¡£È»¶ø×î
+¼Ñ»¯²¢²»ÊÇÉÙÊýadm»ò´óÎ×Ê¦µÄÊÂ£¬¶øÊÇÃ¿Ò»¸öÎ×Ê¦Ð´³ÌÊ½¶¼±ØÐë×¢Òâ
+µÄÊÂÏî¡£Òò´ËÇë´ó¼ÒÔÚÍê³ÉÒ»¸ö×÷Æ·Ê±£¬ÔÙ»¨Ò»Ð©Ê±¼äÖØ¿´Ò»ÏÂ³ÌÊ½
+£¬¿´¿´¿É²»¿ÉÒÔ ½åÓÉÒ»Ð©¼òµ¥µÄ¸ü¸ÄÀ´±ÜÃâÒ»Ð©²»±ØÒªµÄ¼ÆËã£¬¼´Ê¹
+Ö»ÊÇ½ÚÊ¡Ò»Á½¸ö¼ÆËãÒ²ÊÇºÃµÄ¡£µ±È»Ò²²»±ØÎªÁËÊ¡Ò»µãµãµÄ¼ÆËã¶ø»¨
+ºÜ¶àÊ±¼ä»òÊÇ°Ñ³ÌÊ½Ð´µÃºÜ¸´ÔÓ¡£µ«ÊÇÒ»Ð©¼òµ¥µÄÔ­Ôò£¬»òÊÇÉÔÎ¢×¢
+ÒâÒ»ÏÂ£¬¾Í¿ÉÄÜ »áÓÐºÜ´óµÄÓ°Ïì¡£
+ÎÒÃÇÀ´¿´Ò»¸ö¼òµ¥µÄÀý×Ó£¬µ×ÏÂÊÇ/adm/daemons/aim_d.cÆäÖÐµÄÒ»¶Î
+³ÌÊ½£¬×¢Òâ¿´µÚÆßÐÐ£º
+if( random(100)  30 && !me-query(npc) ) return 
+±¾À´·ÅÔÚµ¹ÊýµÚÎåÐÐ£¬Ò²¾ÍÊÇ±ä³É×¢½âµÄµØ·½¡£ÎÒ¿´µ½ÁË£¬¾Í°ÑËüÒÆ
+µ½ÏÖÔÚµÄÎ»ÖÃ¡£ÕâÑùÓÐÊ²÷á²î±ðÄØ£¿Èç¹ûÔÚÔ­À´µÄÎ»ÖÃ£¬ÖÐ¼ä×÷ÁËÒ»
+¶Ñ¹Øì¶skillµÄ¼ÆËã£¬µ±´ËÐÐ³ÉÁ¢£¬ÕâÐ©¼ÆËã¶¼ÀË·ÑÁË¡£¶øÒÆµ½µÚÆßÐÐ
+µÄÎ»ÖÃ£¬µ±´ËÐÐ³ÉÁ¢£¬¾Í²»»áÈ¥¼ÆËãskill£¬Ö»ÊÇ¸ü¸ÄÒ»ÏÂ³ÌÊ½µÄÎ»ÖÃ
+£¬¾Í¿ÉÒÔ½ÚÊ¡Ðí¶à²»±ØÒªµÄ¼ÆËã¡£Õâ¸ö³ÌÊ½ÊÇÒ½ÉúÃ¿»ØºÏ¹¥»÷Ê±¶¼»á
+ºô½Ðµ½£¬Äã¿ÉÒÔÏëÏñÔ­À´µÄÐ´·¨×÷ÁË¶àÉÙ²»±ØÒªµÄ¼ÆËã¡£
+int aim_target(object me, object victim)
+{
+int skill, diffcult
+string lo
+object weapo
+// difficulty for player
+if( random(100)  30 && !me-query(npc) ) return 
+if( !skill || !loc ) return 
+if( undefinedp(diffculty) ) return 

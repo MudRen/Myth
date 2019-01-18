@@ -1,0 +1,24 @@
+inherit SKILL;
+string perform_action_file(string func)
+{
+        return __DIR__"idle-force/" + func;
+}
+
+#include <ansi.h>
+
+string level_description(int level)
+{
+	if ( level < 10 )
+		return BLU "·¢´ô³õÊ¼" NOR;
+	else if ( level < 20 )
+		return HIB "½¥Èë´ôÍ¾" NOR;
+	else if ( level < 30 )
+		return YEL "ÈÕ¼û´ôÖÍ" NOR;
+	else if ( level < 40 )
+		return CYN "´ôÍ·´ôÄÔ" NOR;
+	else if ( level< 50 )
+		return HIW "´ôÈôÄ¾¼¦" NOR;
+	else 
+		return HIR "ÎÞ¿É¾ÈÒ©" NOR;
+}
+
