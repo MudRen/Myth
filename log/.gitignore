@@ -1,1 +1,6 @@
-*.log
+*
+!.gitignore
+!cmds
+!dlog
+!static
+!users
