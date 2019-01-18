@@ -6,7 +6,7 @@ inherit NPC;
 inherit F_SAVE;
 
 private string SAVE_NAME="pet_save";
-private static int can_save=1;
+private nosave int can_save=1;
 
 
 void create()

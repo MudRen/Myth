@@ -64,12 +64,12 @@
 #define   UDP_PORT   6888
 #define CLIENT_VERSION "mwp 1.2"
 
-static string mwhod_addr;
-static string mudname;
-static string keepalive_message;
-static string boot_message;
-static string comments;
-static int socket;
+nosave string mwhod_addr;
+nosave string mudname;
+nosave string keepalive_message;
+nosave string boot_message;
+nosave string comments;
+nosave int socket;
 
 void
 log_info(string error)

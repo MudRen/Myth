@@ -9,13 +9,13 @@
 #include <dbase.h>
 #include <room.h>
 
-static int weight = 0;
-static int encumb = 0, max_encumb = 0;
+nosave int weight = 0;
+nosave int encumb = 0, max_encumb = 0;
 
 varargs int _move(mixed dest, int silently);
 void dest_obj(object obj);
 
-static int max_items=10;
+nosave int max_items=10;
 nomask void set_max_items(int e) {max_items = e;}
 nomask int query_max_items() {return max_items;}
 

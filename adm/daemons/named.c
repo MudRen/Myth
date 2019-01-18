@@ -8,7 +8,7 @@
 inherit F_SAVE;
 inherit F_DBASE;
 
-static string *family_name = ({ "东方", "独孤", "慕容", "欧阳", "司马",
+nosave string *family_name = ({ "东方", "独孤", "慕容", "欧阳", "司马",
                                 "西门", "尉迟", "长孙", "诸葛", "轩辕" });
 
 void create()

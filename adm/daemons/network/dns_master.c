@@ -37,31 +37,31 @@ inherit F_DBASE;
 
 /* global vars */
 // the udp port number of the mud, and the socket id of the udp socket
-static int my_port, socket_id;
+nosave int my_port, socket_id;
 
 // The mapping containing the general mud info.
-static mapping muds;
+nosave mapping muds;
 
 // This mapping has an entry for every mud in the dns, and holds
 // information about the protocols supported for the services
-static mapping mud_svc;
+nosave mapping mud_svc;
 
 // Info about ourselves
-static mapping this_host;
+nosave mapping this_host;
 
 // the server where we get our mudlist from, and the number of tries
 // we have had to contact it.
-static mixed * bootsrv;
-static int bootsrv_retry;
+nosave mixed * bootsrv;
+nosave int bootsrv_retry;
 
 // used for sequencing the requests to the network services
-static int seq_ctr;
-static mapping seq_entries;
+nosave int seq_ctr;
+nosave mapping seq_entries;
 
 // Used for debugging
 #ifdef DEBUG
 #  define debug(x) if(monitor) message("diagnostic", (x), monitor)
-static object monitor = 0;
+nosave object monitor = 0;
 #else
 #  define debug(x)
 #endif

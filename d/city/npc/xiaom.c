@@ -4,7 +4,7 @@
 
 inherit F_VENDOR_SALE;
 
-static int base_price=50000;
+nosave int base_price=50000;
 
 int ask_party();
 int ask_money();

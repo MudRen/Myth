@@ -7,7 +7,7 @@ inherit ROOM;
 // length:time_msg:desc_msg:event_fun
 // %d:%s:%s:%s
 
-static mapping *day_phase = NATURE_D->query_day_phase();
+nosave mapping *day_phase = NATURE_D->query_day_phase();
 
 string dest=__DIR__"eastseashore";
 

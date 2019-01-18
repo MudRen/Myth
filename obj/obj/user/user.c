@@ -11,12 +11,12 @@ inherit F_SAVE;
 inherit F_BACKUP;
 inherit F_ENCODING;
 
-static int net_dead;
+nosave int net_dead;
 int    is_net_dead()    { return net_dead || ! interactive(this_object()); }
 int    is_player()      { return clonep(); }
 int    is_pker()        { return query_condition("no_pk_time"); }
 
-static int last_age_set;
+nosave int last_age_set;
 
 void create()
 {

@@ -5,7 +5,7 @@
 
 inherit F_ONEOWNER;
 
-static int compare_number = -1;
+nosave int compare_number = -1;
 // mon 4/5/98
 
 int query_unique() { return 1; }

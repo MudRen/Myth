@@ -5,7 +5,7 @@
 inherit NPC_SAVE;
 string send_mail();
 string receive_mail();
-static int i;
+nosave int i;
 
 void create()
 {       reload("jiangrobot");

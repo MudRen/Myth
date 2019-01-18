@@ -8,8 +8,8 @@
 #include <room.h>
 #include <ansi.h>
 
-static int weight = 0;
-static int encumb = 0, max_encumb = 0;
+nosave int weight = 0;
+nosave int encumb = 0, max_encumb = 0;
 
 varargs int _move(mixed dest, int silently);
 void dest_obj(object obj);
@@ -19,7 +19,7 @@ void dest_obj(object obj);
 // there is no limitations on # of characters. (limited by encumb)
 // this is to prevent some rooms that full of items and
 // players and npcs can't even enter. :P
-static int max_items=10; // default max_items.
+nosave int max_items=10; // default max_items.
 nomask void set_max_items(int e) {max_items=e;}
 nomask int query_max_items() {return max_items;}
 

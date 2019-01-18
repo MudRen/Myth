@@ -5,7 +5,7 @@
 #include <dbase.h>
 #include <condition.h>
 
-static string *my_id;
+nosave string *my_id;
 
 string *query_my_id()
 {

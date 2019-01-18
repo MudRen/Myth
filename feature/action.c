@@ -1,6 +1,6 @@
 // action.c
 
-static mixed busy=0, interrupt;
+nosave mixed busy=0, interrupt;
 
 void add_busy(int new_busy)
 {
@@ -28,8 +28,8 @@ nomask int is_busy() { return busy!=0; }
 // the two following is used to
 // exert and perform busy
 // mudring from sj 11/21/2002.
-static int exert_time;
-static string exert_type = "内功";
+nosave int exert_time;
+nosave string exert_type = "内功";
 
 varargs void start_exert(int new_exert, string new_type)
 {
@@ -45,8 +45,8 @@ varargs void start_exert(int new_exert, string new_type)
 nomask string query_exert() { return exert_type; }
 nomask int is_exert() { return exert_time; }
 
-static int perform_time;
-static string perform_type = "外功";
+nosave int perform_time;
+nosave string perform_type = "外功";
 
 varargs void start_perform(int new_perform, string new_type)
 {

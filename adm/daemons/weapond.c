@@ -112,7 +112,7 @@ mapping name_type=([
    "sword":"剑","stick":"棍","hammer":"锤","staff":"杖","whip":"鞭","axe":"斧","blade":"刀",
    "fork":"叉","spear":"枪","mace":"锏",
 ]);
-static mapping weapon_type = ([
+nosave mapping weapon_type = ([
  //类型           中文名     英文名          价值    附加伤害值 武器损害值
    "fire0": ({ HIR"火焰"NOR, "flame",        20000,     10,   30 , }),
    "fire1": ({ HIR"极烈火"NOR, "fire",         40000,     20,   40 , }),

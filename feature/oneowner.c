@@ -5,7 +5,7 @@
 
 // mon 2/7/98
 
-private static string obj_owner=0;
+private nosave string obj_owner=0;
 nomask void self_destroy();
 
 void check_owner()

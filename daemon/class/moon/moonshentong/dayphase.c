@@ -2,20 +2,20 @@
 // figure out the current phase of a day
 // ref /adm/daemons/natured.c
 
-static int DP_DAWN = 5;
-static int DP_SUNRISE = 1;
-static int DP_MORNING = 2;
-static int DP_NOON = 0;
-static int DP_AFTERNOON = 1;
-static int DP_EVENING = 2;
-static int DP_NIGHT = 3;
-static int DP_MIDNIGHT = 4;
+nosave int DP_DAWN = 5;
+nosave int DP_SUNRISE = 1;
+nosave int DP_MORNING = 2;
+nosave int DP_NOON = 0;
+nosave int DP_AFTERNOON = 1;
+nosave int DP_EVENING = 2;
+nosave int DP_NIGHT = 3;
+nosave int DP_MIDNIGHT = 4;
 
 // day_phase is an array of mappings of the following type:
 // length:time_msg:desc_msg:event_fun
 // %d:%s:%s:%s
 
-static mapping *day_phase = NATURE_D->query_day_phase();
+nosave mapping *day_phase = NATURE_D->query_day_phase();
 
 int get_current_day_phase() {
     // ref. /adm/daemons/natured.c:init_day_phase()

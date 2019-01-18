@@ -10,9 +10,9 @@
 
 #define MAX_OPPONENT    4
 
-static object *enemy = ({});
-static object *netdead_enemy = ({});
-static string *killer = ({});
+nosave object *enemy = ({});
+nosave object *netdead_enemy = ({});
+nosave string *killer = ({});
 
 // prototypes
 

@@ -17,8 +17,8 @@ string *families = ({
   "高老庄", "江洲国",
 });
 
-static int LAST_HARD_DIS;
-static int flag = 0;
+nosave int LAST_HARD_DIS;
+nosave int flag = 0;
 int set_last_hard_dis();
 
 void check_task();

@@ -1,6 +1,6 @@
 // shadow.c
 
-static object shadowing = 0;
+nosave object shadowing = 0;
 
 object do_shadow(object ob, int flag)
 {

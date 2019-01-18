@@ -214,7 +214,7 @@ void do_flee(object me)
         main(me, directions[random(sizeof(directions))], 0);
 }
 
-static mapping r_dirs = ([
+nosave mapping r_dirs = ([
         "north":        "south",
         "south":        "north",
         "east":         "west",

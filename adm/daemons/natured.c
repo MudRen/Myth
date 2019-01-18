@@ -16,7 +16,7 @@
 #define GAME_TIME(t)            (t - 971000000)
 #define DATE_SCALE              365
 
-static int current_day_phase = -1;
+nosave int current_day_phase = -1;
 mapping *day_phase;
 
 mapping *read_table(string file);

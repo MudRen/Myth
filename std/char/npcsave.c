@@ -31,7 +31,7 @@ inherit NPC;
 inherit F_SAVE;
 
 private string SAVE_NAME="npc_save";
-private static int can_save=1;
+private nosave int can_save=1;
 //default setting
 
 string query_save_name() {return SAVE_NAME;}

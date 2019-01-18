@@ -1,5 +1,5 @@
 inherit NPC;
-static int base_price=5000;
+nosave int base_price=5000;
 void create()
 {
         seteuid(getuid());

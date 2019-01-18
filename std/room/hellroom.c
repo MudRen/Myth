@@ -9,7 +9,7 @@ inherit F_DBASE;
 inherit F_CLEAN_UP;
 
 #include <banned.h>
-static mapping doors;
+nosave mapping doors;
 
 
 int query_max_encumbrance() { return 100000000000; }
