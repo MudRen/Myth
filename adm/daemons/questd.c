@@ -1,7 +1,7 @@
 // questd.c
 // modify by mudring
 
-#pragma save_binary
+//#pragma save_binary
 #pragma optimize
 
 #include <ansi.h>

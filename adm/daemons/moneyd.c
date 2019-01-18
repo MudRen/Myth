@@ -4,7 +4,7 @@
 // Update by Doing for Hell
 
 #pragma optimize
-#pragma save_binary
+//#pragma save_binary
 
 string money_str(int amount)
 {

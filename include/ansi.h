@@ -3,6 +3,8 @@
 //	Creator	:  Gothic@TMI-2  
 //
 //	The standard set of ANSI codes for mudlib use.
+#ifndef __ANSI__
+#define __ANSI__
  
 #define ESC	""
 #define CSI	ESC + "["
@@ -73,4 +75,4 @@
 #define U ESC+"[4m"             /* Initialize underscore mode */
 #define REV ESC+"[7m"           /* Turns reverse video mode on */
 #define HIREV ESC+"[1,7m"       /* Hi intensity reverse video  */
- 
+#endif

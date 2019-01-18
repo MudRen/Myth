@@ -1,6 +1,6 @@
 //stey
 
-#pragma save_binary
+//#pragma save_binary
 #include <ansi.h>
 inherit F_DBASE;
 inherit F_SAVE;

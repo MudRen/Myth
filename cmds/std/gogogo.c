@@ -1,6 +1,6 @@
 //Cracked by Roath
 // go.c
-#pragma save_binary
+//#pragma save_binary
 #include <ansi.h>
 inherit F_CLEAN_UP;
 #define DIR_NAME   0

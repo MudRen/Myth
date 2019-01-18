@@ -3,7 +3,7 @@
 // Dec/01/2002
 
 #pragma optimize
-#pragma save_binary
+//#pragma save_binary
 
 #include <ansi.h>
 #include <dbase.h>

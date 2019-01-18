@@ -5,7 +5,7 @@
 // modify by mudring May/10/2002
 
 #pragma optimize
-#pragma save_binary
+//#pragma save_binary
 
 #include <ansi.h>
 #include <localtime.h>

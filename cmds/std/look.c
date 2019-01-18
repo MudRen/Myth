@@ -2,7 +2,7 @@
 // look.c
  // "per" parts modified by none at 96/10/02
 
-#pragma save_binary
+//#pragma save_binary
 #include <room.h>
 #include <ansi.h>
 

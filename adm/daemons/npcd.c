@@ -1,7 +1,7 @@
 // npcd.c
 // by mudring
 #pragma optimize
-#pragma save_binary
+//#pragma save_binary
 #include <command.h>
 
 string *place = ({ // all qujing dir 37

@@ -1,6 +1,6 @@
 // go.c
 
-#pragma save_binary
+//#pragma save_binary
 #include <ansi.h>
 inherit F_CLEAN_UP;
 #include "/cmds/std/valid_move.h";

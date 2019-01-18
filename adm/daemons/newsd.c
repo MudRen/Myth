@@ -4,7 +4,7 @@
 #include <getconfig.h>
 
 #pragma optimize
-#pragma save_binary
+//#pragma save_binary
 
 inherit F_SAVE;
 inherit F_DBASE;

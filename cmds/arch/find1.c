@@ -1,4 +1,4 @@
-#pragma save_binary
+//#pragma save_binary
 // ls.c
 #include <ansi.h>
 

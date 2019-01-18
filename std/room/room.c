@@ -1,7 +1,7 @@
 // room.c
 // optimize by mudring
 
-#pragma save_binary
+//#pragma save_binary
 
 #include <dbase.h>
 #include <room.h>

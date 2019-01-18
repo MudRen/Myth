@@ -1,7 +1,7 @@
 // weapond.c
 // added by steywen@21cn.com 10/12/2002
 
-#pragma save_binary
+//#pragma save_binary
 #include <ansi.h>
 #include <combat.h>
 #define WW_NAME       0
