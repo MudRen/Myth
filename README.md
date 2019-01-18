@@ -1,7 +1,7 @@
 	
 #《三界神话》－－ SanJie Myth version 1.0 final
 
-本MUD修改为使用[FluffOS](https://github.com/fluffos/fluffos)驱动。
+本MUD修改为使用[FluffOS](https://github.com/fluffos/fluffos)驱动，windows系统直接运行driver.cmd启动，linux系统请自己编译fluffos驱动。
 
 > Copyright 2000-2006 By SanJie Myth Wizard Group All Rights Reserved
 
