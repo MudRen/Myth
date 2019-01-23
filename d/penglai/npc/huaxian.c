@@ -6,7 +6,7 @@
 #include <combat.h>
 
 inherit NPC;
-#include <flowers.h>
+#include "flowers.h"
 
 string name;
 int score;
@@ -248,7 +248,7 @@ void hurt(object ob,object me)
 
 void reset_action() 
 {
-  object me=this_object();
+//object me=this_object();
   mapping action;
   mapping new_act=([]);
 
@@ -263,7 +263,7 @@ void reset_action()
 
 void reward(object me, object victim, object weapon,int damage) 
 {
-  int ammount=0;
+//int ammount=0;
   if (damage<=0) return;
   if (victim->is_busy()) return;
   if (victim->query_temp("no_move")) return;

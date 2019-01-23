@@ -4,7 +4,7 @@
 #include <ansi.h>
 #include <room.h>
 inherit ROOM;
-#include <banned.h> 
+#include "banned.h" 
 
 void create()
 {

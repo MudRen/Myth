@@ -2,8 +2,8 @@
 
 inherit NPC;
 
-#include <quest_ms.c>
-#include <reporting.c>
+#include "quest_ms.c"
+#include "reporting.c"
 
 int test_player();
 
@@ -233,7 +233,6 @@ void rewarding (object who, object ob)
   who->delete("quest/pending/cloth");
   quest_done(who);
 }
-
 
 
 

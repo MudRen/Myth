@@ -1,7 +1,7 @@
 // /d/quest/yaota/baoku1.c  ±¦¿â
 inherit ROOM; 
 #include <ansi.h> 
-#include <banned1.h> 
+#include "banned1.h" 
 
 void create() 
 { 

@@ -6,7 +6,7 @@
 #include <login.h>
 
 inherit ROOM;
-#include <banned.h>
+#include "banned.h"
 #include <ansi.h>
 #include <ansi.h>
 #define MAX_FABAO       3
@@ -284,7 +284,7 @@ int check_legal_id(string id)
 int check_legal_name(string name, int max_len)
 {
         int i;
-        string  *legalname;             //not implemented..may add later
+//      string  *legalname;             //not implemented..may add later
         
         i = strlen(name);
     if( (strlen(name) < 2) || (strlen(name) > max_len ) ) {

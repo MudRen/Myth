@@ -1,8 +1,7 @@
-
 void check2()
 {
-        object ob,me,*inv;
-        int i,level;
+        object ob,me/*,*inv*/;
+        int /*i,*/level;
         ob=this_object();
         me=query("owner");
         if(ob->query("question")=="done") me->set_temp("rulai_task",1);
@@ -108,4 +107,3 @@ void check2()
 
 }
                                                                                                            
-

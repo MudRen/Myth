@@ -1,4 +1,3 @@
-
 //负责存放人质
 
 #include <ansi.h>
@@ -75,7 +74,7 @@ string query_yao(object me)
 
 int add_new_yao( object me)
 {
-    string my_id,my_cls,type;
+    string /*my_id,*/my_cls,type;
     string sname;
     string* yaoname;
     int my_exp,index;
@@ -154,4 +153,3 @@ int query_killyao(object me,string loc,string yaoid)
 }
 
  
-

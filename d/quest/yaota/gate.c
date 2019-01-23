@@ -1,6 +1,6 @@
 inherit ROOM;
 #include <ansi.h>
-#include <banned1.h> 
+#include "banned1.h" 
 
 void create()
 {
@@ -23,7 +23,7 @@ LONG);
 
 void init() 
 {  
-        object me=this_player();
+//      object me=this_player();
         add_action("do_quit",banned_action);  
         add_action("do_cast","cast");
         add_action("do_exert","exert");

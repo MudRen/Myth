@@ -4,7 +4,7 @@
 
 #include <ansi.h>
 inherit NPC;
-#include <soldier_skill.h>
+#include "soldier_skill.h"
 void create()
 {
 	set_name("·ï»Ë",({ "feng huang", "hufa" }) );

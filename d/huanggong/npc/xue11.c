@@ -1,7 +1,6 @@
-
 inherit NPC;
 #include <ansi.h>
-#include <greeting.h>
+#include "greeting.h"
 string ask_bad(object me);
 int done_bad();
 int do_job();
@@ -150,8 +149,8 @@ int do_job()
 int ask_done()
 {      
 
-        object me,ob;
-        int gong,exp,pot,money;
+        object me/*,ob*/;
+        int gong,exp,pot/*,money*/;
         me = this_player();
         gong = me->query("job/gong");
         exp = gong * 250;
@@ -174,4 +173,3 @@ int ask_done()
     me->delete("job/sxy-done");
     return 1;
 }
-

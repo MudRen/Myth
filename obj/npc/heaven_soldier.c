@@ -4,7 +4,7 @@
 
 inherit NPC;
 
-#include <soldier_skill.h>
+#include "soldier_skill.h"
 void create()
 {
         object ob1, ob2;
@@ -89,4 +89,3 @@ void invocation(object who)
         set_leader(who);
   give_skill(who,"moonshentong","sword");
 }
-

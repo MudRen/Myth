@@ -35,7 +35,7 @@ void create()
 void init()
 {
         object me = this_object();
-        object who = this_player();
+//      object who = this_player();
 
         me->create_identity("/d/gumu/npc/da ji", "/d/gumu/beiji");
         
@@ -379,9 +379,9 @@ void self_adjust (object me)
 
 int init_identity (object me, object master, object where)
 {
-        mapping skill_status;
-        string *skillnames;
-        int i;
+//      mapping skill_status;
+//      string *skillnames;
+//      int i;
 
         reset_eval_cost();
         me->setup();

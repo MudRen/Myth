@@ -1,7 +1,7 @@
 // by snowcat jan 22 1998
 
 #include <ansi.h>
-#include <quest.c>
+#include "quest.c"
 
 // the quest format is the following mapping:
 // daoxing :     type     name     id            object         amount
@@ -310,5 +310,4 @@ mapping quests_food = ([
  3000010 : ({ "find", HIC "º®±ù²Ý" NOR, "hanbing cao",      "", "1" }),
  3000020 : ({ "find", HIR "ÑªÆÐÌá" NOR, "xue puti",         "", "1" }),
 ]);
-
 

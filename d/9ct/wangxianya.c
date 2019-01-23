@@ -3,7 +3,7 @@
 #include <ansi.h>
 inherit ROOM;
 #include <room.h>
-#include <banned.h>
+#include "banned.h"
 string *list=({
         "9ctguai1","9ctguai2",
 });

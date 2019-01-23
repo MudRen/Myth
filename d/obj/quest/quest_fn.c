@@ -2,7 +2,7 @@
 inherit F_CLEAN_UP;
 
 #include <ansi.h>
-#include <quest.h>
+#include "quest.h"
 
 // the quest format is the following mapping:
 // daoxing :     type     name     id            object         amount
@@ -91,4 +91,3 @@ mapping query_quest(object who)
   quest+=(["reward_msg":"$N笑道：不错不错，有劳你了。\n"]);
   return quest;
 }
-

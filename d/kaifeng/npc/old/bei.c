@@ -205,4 +205,3 @@ void rewarding (object who)
   call_out ("quest_done",1,who);
 }
 
-

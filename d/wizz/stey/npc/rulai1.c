@@ -1,4 +1,3 @@
-
 inherit NPC;
 
 #include <obstacle.h>
@@ -375,7 +374,7 @@ int do_back(string arg)
 {
   object who = this_player();
   object me = this_object();
-  string here = (string)environment(me);
+//string here = (string)environment(me);
   string there = who->query_temp("lingshan/from");
 
   message_vision("$NÇëÇó$nËÍ$N»Ø·µ¡£\n",who,me);

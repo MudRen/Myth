@@ -2,9 +2,9 @@
 
 inherit NPC;
 
-#include <quest_fd.c>
-#include <quest_gv.c>
-#include <reporting.c>
+#include "quest_fd.c"
+#include "quest_gv.c"
+#include "reporting.c"
 
 int test_player();
 
@@ -208,5 +208,4 @@ object ob2;
 ob2=new("/d/kaifeng/obj/yaocai.c"); 
 ob2->move(who);
 }
-
 

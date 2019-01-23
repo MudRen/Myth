@@ -3,7 +3,7 @@
 //2000.10
 #include <ansi.h>
 inherit NPC;
-#include <soldier_skill.h>
+#include "soldier_skill.h"
 void create()
 {
         
@@ -73,4 +73,3 @@ void invocation(object who)
         set_leader(who);
   give_skill(who,"dengxian-dafa","sword");
 }
-

@@ -1,1 +1,1 @@
-#include <maze.h>
+#include "maze.h"

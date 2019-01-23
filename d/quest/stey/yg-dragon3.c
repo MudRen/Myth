@@ -6,7 +6,7 @@ void set_skills(int max_value, int level)
 {
          int guai_value;
          int i = 50;
-         object weapon;
+//       object weapon;
          object me = this_object();
          
         ::set_skills(max_value, level);
@@ -54,4 +54,3 @@ void set_skills(int max_value, int level)
         carry_object("/d/obj/armor/jinjia.c")->wear();
 
 }
-

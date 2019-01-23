@@ -1,12 +1,12 @@
 
 // 神话世界·西游记·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 // create by snowcat.c 2/8/1997
 
 inherit __DIR__"ground0";
 
-#include <ground.h>
+#include "ground.h"
 
 string report_mode()
 {
@@ -50,13 +50,13 @@ string report_teams()
       mapping team_info = team["info"];
 
       msg += " " + to_chinese(j) + ". " + team_info["team_name"]+" ";
-      k = team["number"];    
+      k = team["number"];
       for (l = 0; l < k; l++)
       {
         mapping member = team[l];
 
         msg += member["name"]+"("+member["id"]+") ";
-      } 
+      }
       msg += "\n";
     }
   }
@@ -70,7 +70,7 @@ int do_report1()
 {
   string line = "-------------------------------------------------------------------\n";
   string msg = line;
-  
+
   msg += "\n大会筹备阶段：\n";
   msg += report_mode();
   msg += report_teams();
@@ -94,7 +94,7 @@ int do_mode (string arg)
   string choices = "";
 
   if (step > STEP_PREPARE)
-  {  
+  {
     write ("比赛已开始了，现在来修改比赛设置为时已晚了！\n\n");
     return 1;
   }
@@ -113,7 +113,7 @@ int do_mode (string arg)
   if ((! arg) ||
       (sscanf(arg,"%d",j)!=1) ||
       (j < 0 || j >= i))
-  {  
+  {
     who->start_more(msg+"[使用 mode "+choices+" 来修改比赛方式]\n\n");
     return 1;
   }
@@ -305,13 +305,13 @@ int do_team(string arg)
   string choice = " ";
 
   if (step > STEP_PREPARE)
-  {  
+  {
     write ("比赛已开始了，现在来修改比赛设置为时已晚了！\n\n");
     return 1;
   }
 
   if (mode == MODE_SINGLE_SD)
-  {  
+  {
     write (modes[mode]+"不需要组队，直接请玩家上场即可。\n");
     write ("[使用 mode 来修改比赛方式]\n\n");
     return 1;
@@ -337,7 +337,7 @@ int do_team(string arg)
     int l = teams["number"];
 
     if (mode == MODE_SINGLE_LT && l > 0)
-    {  
+    {
       write ("已经有一队了，"+modes[mode]+
              "只需要有一队参赛，让选手互相挑战即可。\n");
       write ("[使用 mode 来修改比赛方式]\n\n");
@@ -358,7 +358,7 @@ int do_team(string arg)
         mapping member = team[k];
 
         msg2 += member["name"]+"("+member["id"]+") ";
-      } 
+      }
       msg2 += "\n";
     }
   }
@@ -368,7 +368,7 @@ int do_team(string arg)
       strlen(choice) != 1 ||
       ((j = capitalize(choice)[0]-'A') & 0) ||
       (j < 0 || j >= i))
-  {  
+  {
     who->start_more(msg+msg2+"[使用 team "+choices+" 来增设新的参赛队伍]\n\n");
     return 1;
   }
@@ -378,7 +378,7 @@ int do_team(string arg)
   if ((j=existing_families[family_name])>0)
     team_name += "（"+chinese_number(j+1)+"）";
   new_team_info = ([
-                     "family_name" : family_name, 
+                     "family_name" : family_name,
                      "team_name" : team_name,
                   ]);
   new_team = ([
@@ -395,7 +395,7 @@ int do_team(string arg)
     i = teams["number"]+1;
     teams["number"] = i;
   }
-  teams += ([i-1 : new_team]);  
+  teams += ([i-1 : new_team]);
   msg += "现在共有"+chinese_number(i)+"组参赛队伍：\n";
   for (j = 0; j < i; j++)
   {
@@ -409,12 +409,12 @@ int do_team(string arg)
       mapping member = team[k];
 
       msg += member["name"]+"("+member["id"]+") ";
-    } 
+    }
     msg += "\n";
   }
   who->start_more(msg);
   inform (who, "设置“"+team_name+"”队。\n");
-  
+
   this_room()->set("match/teams",teams);
   return 1;
 }
@@ -432,7 +432,7 @@ int do_teammember(string arg)
   string msg = "", msg2 = "", addsub, id;
 
   if (step > STEP_PREPARE)
-  {  
+  {
     write ("比赛已开始了，现在来修改比赛设置为时已晚了！\n\n");
     return 1;
   }
@@ -459,7 +459,7 @@ int do_teammember(string arg)
         mapping member = team[k];
 
         msg += member["name"]+"("+member["id"]+") ";
-      } 
+      }
       msg += "\n";
 
     }
@@ -468,11 +468,11 @@ int do_teammember(string arg)
   if ((! arg) ||
       (sscanf(arg,"%d %s %s",j,addsub,id)!=3) ||
       (addsub != "+" && addsub != "-"))
-  {  
+  {
     who->start_more(msg+"[使用 teammember/tm <team nb> +/- id 增减队员]\n\n");
     return 1;
   }
-  
+
   team = teams[j];
   if (! team)
   {
@@ -511,7 +511,7 @@ int do_teammember(string arg)
   if (addsub == "-")
   {
     msg2 = "从参赛队伍“"+team_info["team_name"]+
-           "”里将"+ob->query("name")+"删除了。\n";    
+           "”里将"+ob->query("name")+"删除了。\n";
     team = delete_team_member(team,ob);
   }
   else
@@ -526,7 +526,7 @@ int do_teammember(string arg)
                "("+id+")了。\n";
         who->start_more(msg+"[使用 teammember/tm <team nb> +/- id 增减队员]\n\n");
         return 1;
-      } 
+      }
     }
     msg2 += "将"+ob->query("name")+"加入参赛队伍“"+
             team_info["team_name"]+"”了。\n";
@@ -539,9 +539,9 @@ int do_teammember(string arg)
     mapping member = team[k];
 
     msg += member["name"]+"("+member["id"]+") ";
-  } 
+  }
   msg += "\n";
-  
+
   who->start_more(msg);
   inform (who, msg2);
   this_room()->set("match/teams",teams);
@@ -559,7 +559,7 @@ int do_start ()
   int team_min, team_max;
 
   if (step > STEP_PREPARE)
-  {  
+  {
     write ("比赛已开始了！\n\n");
     return 1;
   }
@@ -576,7 +576,7 @@ int do_start ()
     }
     teams = ([ "number" : 0]);
   }
-  else 
+  else
   {
     if (! teams || teams["number"] == 0)
     {
@@ -624,7 +624,7 @@ int do_start ()
           team_max = i;
           max = j;
         }
-      }      
+      }
       if (min < 1)
       {
         write (teams[team_min]["info"]["team_name"]+
@@ -648,7 +648,7 @@ int do_start ()
   announce ("水陆大会比武正式开始！\n");
   //announce ("比武的方式是“"+modes[mode]+"”。\n");
 
-  this_room()->set("match/step",STEP_FIGHT);  
+  this_room()->set("match/step",STEP_FIGHT);
   this_room()->set("match/teams",teams);
   call_out ("announcing_start",3);
   return 1;
@@ -674,13 +674,13 @@ int do_cancel ()
 
 /*
   if (step > STEP_PREPARE)
-  {  
+  {
     write ("比赛已开始了！\n\n");
     return 1;
   }
 */
   if (! this_room()->query("match"))
-  {  
+  {
     write ("现在这里什么都没有设置。\n\n");
     return 1;
   }

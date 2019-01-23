@@ -2,9 +2,9 @@
 
 inherit NPC;
 
-#include <quest_fd.c>
-#include <quest_gv.c>
-#include <reporting.c>
+#include "quest_fd.c"
+#include "quest_gv.c"
+#include "reporting.c"
 
 int test_player();
 
@@ -205,5 +205,4 @@ void rewarding (object who)
   who->delete("quest/pending/give");
   quest_done(who);
 }
-
 

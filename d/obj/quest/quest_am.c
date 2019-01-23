@@ -1,7 +1,7 @@
 //Cracked by Roath
 inherit F_CLEAN_UP;
 #include <ansi.h>
-#include <quest.h>
+#include "quest.h"
 
 mapping quests_armor = ([
       10 : ({ "find", "Æ¤±³ÐÄ",         "pi beixin",          "", "1" }),

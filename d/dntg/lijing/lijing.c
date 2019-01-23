@@ -1,4 +1,3 @@
-
 #include <ansi.h>
 
 inherit NPC;
@@ -155,7 +154,7 @@ void go_home() {
 
 void start() {
   object me=this_object();
-  object target=target();
+//object target=target();
   object bing1=new(__DIR__"tianbing");
   object bing2=new(__DIR__"tianbing");
   object nezha=new(__DIR__"nezha");
@@ -201,7 +200,7 @@ void call_juling() {
 }
 
 void lose(object loser) {
-  object me=this_object();
+//object me=this_object();
 
   command("kick "+loser->query("id"));
   if (loser==juling()) call_out("call_nezha",5);
@@ -226,6 +225,5 @@ void retreat() {
   announcer->announce(target(),environment());
   go_home();
 }
-
 
 

@@ -64,8 +64,8 @@ string *names = ({
 
 void setname()
 {
-object ob = owner();
-object me = this_object();
+//object ob = owner();
+//object me = this_object();
     int i;
     string name;
     i=random(sizeof(names));
@@ -109,8 +109,8 @@ void create()
 
 string invocation(object me, int level)
 {
-    object guai,env;
-    string *dirs, where,str;
+    object guai/*,env*/;
+    string /**dirs,where,*/str;
 
     guai=this_object();
     copy_status(me, level);
@@ -163,7 +163,7 @@ void copy_status(object me, int level)
 
 void set_skills(int max_value, int level)
 {
-    object guai=this_object();
+//  object guai=this_object();
     int guai_value;
 
     if (level==1) guai_value = max_value+max_value/5;
@@ -264,9 +264,9 @@ void set_hp_status(object me, int level)
 
 void init ()
 {
-    object me=this_object();
+//  object me=this_object();
     object who=this_player();
-    int type;
+//  int type;
     int t=query("stay_time");
     ::init();
     add_action("do_persuade", "persuade");
@@ -378,7 +378,7 @@ int do_block(string arg)
     object me=this_object(); 
     object who=this_player(); 
     string verb=query_verb(); 
-    int t; 
+//  int t; 
      
     if(who!=owner()) return 0; 
 

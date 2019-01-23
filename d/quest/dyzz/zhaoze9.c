@@ -4,7 +4,7 @@
 #include <ansi.h>
 #include <room.h>
 inherit ROOM;
-#include <banned.h>
+#include "banned.h"
 int drop_him(object me);
 
 void create()
@@ -45,7 +45,7 @@ void init()
 {       object ob;
         object jade;
         int water, food, bellicosity;
-        string outexit;
+//      string outexit;
         if( interactive( ob = this_player())){
                 water = ob->query("water");
                 food = ob->query("food");
@@ -189,4 +189,3 @@ int valid_leave(object me, string dir)
         
         return ::valid_leave(me, dir);
 }
-

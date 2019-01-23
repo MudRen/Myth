@@ -1,7 +1,7 @@
 //Cracked by Roath
 // 神话世界·西游记·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 //      /adm/daemon/mail_serv.c
 //      from the Nightmare Mudlib
 //      the intermud mail server compatible with Huthar's mailer and
@@ -11,9 +11,11 @@
 //      rewritten by Descartes of Borg for IIPS
 
 #include <net/daemons.h>
-#include <daemons.h>
+#include <net/daemons.h>
+#ifndef ROOT_UID
 #include <uid.h>
-#include <post.h>
+#endif
+// #include <post.h>
 
 #define log(x) log_file("MS", x)
 #define MS_SAVE "mail-queue"
@@ -21,7 +23,7 @@
 #define AGE_TIME 604800
 #define EOF "%EOF%"
 #define EOT "%EOT%"
- 
+
 nosave string upd;
 nosave mapping new_mail_queue, sockets;
 nosave string receiver, from, to, subject, message,cc;
@@ -30,15 +32,15 @@ nosave string mud;
 nosave mixed mqi;
 nosave mapping mud_groups;
 nosave mixed outgoing;
- 
+
 mixed mail_queue;
 int date_last_flushed;
- 
+
 void process_message(int fd);
 void flush_mail_queue();
 void age_queue();
 void bad_port(string mud, string from, string message);
- 
+
 void reset() {
     if( (time()-date_last_flushed) > FLUSH_TIME) {
         mqi = keys(mail_queue);
@@ -58,7 +60,7 @@ void create() {
     mqi = keys(mail_queue);
     flush_mail_queue();
 }
- 
+
 string convert_name(string nom, string lmud) {
     string tmp, tmpaddr;
 
@@ -70,7 +72,7 @@ string convert_name(string nom, string lmud) {
       return tmp+"@"+tmpaddr;
     return tmp;
 }
- 
+
 void remote_mail(string who, string lmud, mapping borg) {
     string *tmp;
     int i, max;
@@ -94,7 +96,7 @@ void remote_mail(string who, string lmud, mapping borg) {
     save_object(DIR_POSTAL+"/"+MS_SAVE);
     mqi += ({ lmud });
 }
- 
+
 void bad_port(string mud, string from, string msg) {
     string to_ob;
 
@@ -108,22 +110,22 @@ void bad_port(string mud, string from, string msg) {
       "subject": "Invalid remote address" ]) );
     map_delete(mail_queue, mud);
 }
- 
+
 void remove() { destruct(this_object()); }
- 
+
 void set_mqi(mixed m) { mqi = m; }
 
 string *query_mqi() { return mqi; }
- 
+
 mapping query_mail_queue() { return mail_queue; }
 
 void set_mail_queue(mixed a) { mail_queue = a; }
- 
+
 void clear_mail_queue() {
     mail_queue = ([]);
     save_object(DIR_POSTAL+"/"+MS_SAVE);
 }
- 
+
 void age_queue() {
     int i, j;
     string *key;
@@ -141,7 +143,7 @@ void age_queue() {
         }
     }
 }
- 
+
 void close_callback(int id) { map_delete(sockets, id); }
 
 void service_request(int id) { sockets[id] = (["msg": "" ]); }
@@ -153,7 +155,7 @@ void read_callback(int id, string data) {
     }
     else sockets[id]["msg"] += data;
 }
- 
+
 void process_message(int id) {
     string *local, *bad_people;
     mixed tmp, tmp2;
@@ -209,7 +211,7 @@ void process_message(int id) {
         }
     }
 }
- 
+
 void flush_mail_queue() {
     string *muds;
     string address, port;
@@ -223,10 +225,10 @@ void flush_mail_queue() {
         flush_mail_queue();
     }
 }
- 
+
 void service_callback(int id) {
     int i;
- 
+
     INETD->write_socket(id, lower_case(mud_name()) + "\n");
     for(i=0; i<sizeof(outgoing); i++) {
         INETD->write_socket(id, outgoing[i]["recipient"] + "\n");

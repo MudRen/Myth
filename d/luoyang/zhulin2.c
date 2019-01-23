@@ -1,4 +1,3 @@
-a
 inherit ROOM;
 
 void create()
@@ -19,4 +18,3 @@ LONG);
         setup();
         replace_program(ROOM);
 }
-

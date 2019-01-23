@@ -2,7 +2,7 @@
 
 inherit NPC;
 
-#include <greeting.h>
+#include "greeting.h"
 
 void create()
 {
@@ -51,4 +51,3 @@ int accept_fight(object me)
         kill_ob(me);
         return 1;
 }
-

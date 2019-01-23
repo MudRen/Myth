@@ -1,12 +1,12 @@
 #include <ansi.h>
 inherit ITEM;
 #include <dbase.h>
-#include <flowers.h>
+#include "flowers.h"
 int DEBUG=1;
 
 void setname() 
 { 
-        object ob = this_player();
+//      object ob = this_player();
         int i; 
         string name; 
         i=random(sizeof(flowers)); 
@@ -34,7 +34,7 @@ int do_combine(string arg)
 {
       object me=this_player();
         object wan,ob; 
-        int count;
+//      int count;
         ob=this_object();
         if (!arg) 
           return notify_fail("ÄãÒª×öÊ²Ã´£¿\n");

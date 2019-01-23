@@ -2,29 +2,29 @@
 
 #include <ansi.h>
 inherit ROOM;
-#include <banned.h>
 
-
+string *banned_action=({"practice","exercise","meditate","xiudao","learn","study","read","bian","quit","accept","fly","surrender","move","perform"});
 
 void setup2()
 {
-   
-    int level;
+
+    int level,i;
+    object guai;
     set("mofengroom", 1);
-  
-    if(this_object()->qurey("level")) level=this_object()->qurey("level");
+
+    if(this_object()->query("level")) level=this_object()->query("level");
       else level=random(40)+10;
-    
-    if(this_object()->qurey("npc_number")> 1){ 
+
+    if(this_object()->qurey("npc_number")> 1){
          for(i=0;this_object()->query("npc_number");i++)
-          {  
-    
-               guai=new("/d/mofeng/npc/stey/guai"); 
-               guai->create(level,level); 
-               guai->move(this_object()); 
-           } 
-                                             } 
-    
+          {
+
+               guai=new("/d/mofeng/npc/stey/guai");
+               guai->create(level,level);
+               guai->move(this_object());
+           }
+                                             }
+
     set("alternative_die", 1);
 
     setup();

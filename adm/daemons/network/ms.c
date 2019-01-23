@@ -1,7 +1,7 @@
 //Cracked by Roath
 // 神话世界·西游记·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 /*
  * Intermud mail server, used by Huthar's mailer daemon
  * Original author: Huthar
@@ -15,30 +15,30 @@
  *     comment referring to ``enable for debugging only'')
  * Grendel, 930904  Fixed a bug in mailing to remote groups
  */
- 
+
 #include <config.h>
-#include <mailer.h>
-#include <daemons.h>
+// #include <mailer.h>
+// #include <net/daemons.h>
 #include <net/daemons.h>
 #include <uid.h>
- 
+
 #define log(x)     log_file("MS", x)
 #define MS_SAVE     "mail-queue"
 #define FLUSH_TIME   86400
 #define AGE_TIME   604800
 #define EOF     "%EOF%"
 #define EOT     "%EOT%"
- 
+
 nosave mapping   sockets;
 nosave mixed   mqi, outgoing;
 nosave string   mname;
- 
+
 mixed mail_queue;
 int date_last_flushed;
- 
+
 void flush_mail_queue();
 void dump_mailq();
- 
+
 
 void
 create()
@@ -52,7 +52,7 @@ create()
     mname = lower_case(replace_string(THIS_MUD, " ", "."));
     flush_mail_queue();
 } // create
- 
+
 
 string
 convert_name(string lname, string lmud)
@@ -76,7 +76,7 @@ convert_name(string lname, string lmud)
    return tmp + "@" + tmpaddr;
     return tmp;
 } // convert_name
- 
+
 
 void
 remote_mail(string own, string mud, mapping outmsg)
@@ -146,13 +146,13 @@ bad_port(string lmud, string lfrom, string msg)
     mail_queue[lmud] = 0;
 } // bad_port
 
- 
+
 void
 remove()
 {
-    destruct(this_object()); 
+    destruct(this_object());
 } // remove
- 
+
 
 #if 1     // XXX: enable for debugging only - Zak
 void   set_mqi(mixed m)   { mqi = m; }
@@ -160,16 +160,16 @@ string *query_mqi()     { return mqi; }
 
 void   set_mail_queue(mixed a)   { mail_queue = a; }
 mapping   query_mail_queue()   { return mail_queue; }
- 
+
 void
-clear_mail_queue() 
+clear_mail_queue()
 {
     mail_queue = ([ ]);
     save_object(MAILDIR + MS_SAVE);
 } // clear_mail_queue
 #endif
 
- 
+
 void
 age_queue()
 {
@@ -209,7 +209,7 @@ reset()
     }
     age_queue();
 } // reset
- 
+
 
 void
 close_callback(int id)
@@ -218,13 +218,13 @@ close_callback(int id)
     return;
 } // close_callback
 
- 
+
 void
 service_request(int id)
 {
     sockets[id] = ([ "msg" : "" ]);
 } // service_request
- 
+
 
 void
 process_message(int id)
@@ -243,7 +243,7 @@ process_message(int id)
     inmsg = ([ ]);
 
     max = sizeof(tmp);
-    for (i = 0; i < max; i++) 
+    for (i = 0; i < max; i++)
     {
    tmp2[i] = explode(tmp[i], "\n");
     }
@@ -293,7 +293,7 @@ process_message(int id)
          "message" : "BODY OF MESSAGE FOLLOWS:\n\n"
             + inmsg["message"]
        ]));
-        
+
         // XXX: rework the line below - it's ugly... -Zak
        if (sizeof(explode(inmsg["from"], "@")) == 1)
        {
@@ -322,8 +322,8 @@ read_callback(int id, string data)
     }
     sockets[id]["msg"] += data;
 } // read_callback
- 
- 
+
+
 void
 flush_mail_queue()
 {
@@ -345,7 +345,7 @@ flush_mail_queue()
     // we need some sort of time out here
 } // flush_mail_queue
 
- 
+
 void
 service_callback(int id)
 {

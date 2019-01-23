@@ -1,6 +1,6 @@
 inherit NPC;
 #include <ansi.h>
-#include <greeting.h>
+#include "greeting.h"
 string ask_bad(object me);
 int done_bad();
 int do_job();
@@ -186,8 +186,8 @@ return 1;
 int ask_done()
 {
 
-        object me,ob;
-        int gong,exp,pot,money,i,t;
+        object me/*,ob*/;
+        int gong,exp,pot/*,money*/,i,t;
         me = this_player();
         gong = me->query("job/gong");
 
@@ -228,4 +228,3 @@ t=me->query("sell_gem/ask_jobgift_time");
     me->delete("job/sxy-done");
     return 1;
 }
-

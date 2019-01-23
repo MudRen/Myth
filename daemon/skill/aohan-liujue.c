@@ -132,7 +132,7 @@ int practice_skill(object me)
 mapping query_action(object me, object weapon) 
 { 
        int i, level,lvl; 
-string *act; 
+//string *act; 
 mapping nac; 
        level   = (int) me->query_skill("aohan-liujue",1); 
 if (level<100) lvl=0; 
@@ -195,4 +195,3 @@ string perform_action_file(string action)
 { 
 return CLASS_D("yaomo") + "/xueshan/aohan-blade/" + action;
 } 
-

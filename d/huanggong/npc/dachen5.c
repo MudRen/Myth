@@ -2,7 +2,7 @@
 
 inherit NPC;
 
-#include <reporting.h>
+#include "reporting.h"
 
 void create()
 {
@@ -65,4 +65,3 @@ void reward (object who)
     silver->move(environment(who));
   message_vision ("$N递给$n一包白银。\n",me,who);
 }
-

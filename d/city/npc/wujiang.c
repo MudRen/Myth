@@ -2,7 +2,7 @@
 
 inherit NPC;
 
-#include <greeting.h>
+#include "greeting.h"
 
 void create()
 {
@@ -48,4 +48,3 @@ int accept_fight(object me)
         message_vision("守城武将对$N把眼一瞪，喝道：呔，大胆，还不退下！\n\n", me);
         return 0;
 }
-

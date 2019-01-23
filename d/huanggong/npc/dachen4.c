@@ -2,7 +2,7 @@
 
 inherit NPC;
 
-#include <reporting.h>
+#include "reporting.h"
 
 void create()
 {
@@ -146,5 +146,4 @@ void reward (object who)
 
   who->add_temp(str,points);
 }
-
 

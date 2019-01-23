@@ -2,7 +2,7 @@
 inherit F_CLEAN_UP;
 
 #include <ansi.h>
-#include <quest.h>
+#include "quest.h"
 
 // the quest format is the following mapping:
 // daoxing :     type     name     id            object         amount

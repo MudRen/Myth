@@ -309,7 +309,7 @@ void set_skills(int j, int level)
 
 void copy_status(object me,object ob, int lv)
 {
-        int j, lvl,k,m;
+        int /*j,*/ lvl,k,m;
         object qm=new("/d/changan/npc/qianmian.c");
 	int base=20;
 

@@ -1,7 +1,6 @@
-
 inherit NPC;
 #include <ansi.h>
-#include <greeting.h>
+#include "greeting.h"
 string ask_girl(object me);
 int done_girl();
 
@@ -113,5 +112,4 @@ int done_girl()
         who->delete("girl");
         return 1;
 }
-
 

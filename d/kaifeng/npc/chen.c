@@ -2,8 +2,8 @@
 
 inherit NPC;
 
-#include <quest_ak.c>
-#include <reporting.c>
+#include "quest_ak.c"
+#include "reporting.c"
 
 string *strs = ({
     "$N燃起一根香祭祀一番，对$n说道：祖灵在天，请您去拜见$w并询问有关$o一事。\n",

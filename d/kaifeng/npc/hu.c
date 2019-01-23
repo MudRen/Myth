@@ -2,8 +2,8 @@
 
 inherit NPC;
 
-#include <quest_kl.c>
-#include <reporting.c>
+#include "quest_kl.c"
+#include "reporting.c"
 
 int test_player();
 

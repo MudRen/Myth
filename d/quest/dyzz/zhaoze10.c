@@ -4,14 +4,14 @@
 #include <ansi.h>
 #include <room.h>
 inherit ROOM;
-#include <banned.h>
+#include "banned.h"
 string *list=({"yg-level0","yg-level1","yg-level2","yg-level3","yg-level4","yg-level5","yg-level6","yg-level7","yg-level8","yg-level9","yg-level10",
         });
 
 void create()
 {
-        object obj;
-        int i,num;
+//      object obj;
+        int /*i,*/num;
         set("short", "蛮荒沼泽");
         set("long", @LONG
 你现在处在遍布湿泥的沼泽中，泥巴松软粘脚。不时可听到隐隐的有野兽的

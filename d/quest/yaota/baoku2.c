@@ -1,7 +1,7 @@
 // /d/quest/yaota/baoku1.c  ±¦¿â
 inherit ROOM; 
 #include <ansi.h> 
-#include <banned1.h> 
+#include "banned1.h" 
 
 void create() 
 { 
@@ -107,4 +107,3 @@ int do_exert(string arg) {
         if(arg !="recover" && arg != "heal" && arg != "refresh") return 0;
         command("exert "+arg);  
 }
-

@@ -1,7 +1,6 @@
-
 inherit NPC;
 #include <ansi.h>
-#include <greeting.h>
+#include "greeting.h"
 string ask_bad(object me);
 
 void create()

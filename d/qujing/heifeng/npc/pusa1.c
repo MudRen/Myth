@@ -70,7 +70,7 @@ LONG);
 void announce_success (object who)
 {
   int i;
-  object me = this_object();
+//object me = this_object();
 
   if (who->query("combat_exp") < 10000)
     return;
@@ -102,4 +102,3 @@ void die(object me)
 {
         destruct(me);
 }
-

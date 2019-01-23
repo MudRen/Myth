@@ -128,7 +128,7 @@ int do_answer(string arg)
 int now_time()
 {
 	int i;
-	object ob=this_player();
+//	object ob=this_player();
 	mixed *local;
 	local = localtime(time()*60);
 	i=local[LT_MDAY] + (local[LT_HOUR]>23? 1 : 0);

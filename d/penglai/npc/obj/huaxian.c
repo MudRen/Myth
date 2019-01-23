@@ -4,7 +4,7 @@
 #include <combat.h>
 
 inherit NPC;
-#include <flowers.h>
+#include "flowers.h"
 
 string name;
 

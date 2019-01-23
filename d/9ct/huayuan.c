@@ -3,7 +3,7 @@
 
 #include <ansi.h>
 inherit ROOM;
-#include <banned1.h>
+#include "banned1.h"
 
 void create ()
 {

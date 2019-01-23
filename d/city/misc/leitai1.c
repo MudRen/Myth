@@ -5,7 +5,7 @@
 //inherit ROOM;
 inherit "/d/city/misc/scoresheet.c";
 
-#include <banned.h>
+#include "banned.h"
 void finish(int);
 void fullup(object);
 void pre_status(object);
@@ -196,8 +196,8 @@ void start() {
 void broadcast_room (object room, string str)
 {
   string prefix = HIR"°æ–°¿ﬁÃ®…œ°ø"NOR;
-  string s1 = str, s2 = "", s3;
-  int i;
+  string s1 = str, s2 = ""/*, s3*/;
+//int i;
 
   reset_eval_cost();
 

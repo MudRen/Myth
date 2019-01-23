@@ -1,6 +1,6 @@
 #include <ansi.h>
 #include <room.h>
-#include <laojunluhelp.h>
+#include "laojunluhelp.h"
 
 inherit ROOM;
 

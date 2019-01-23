@@ -1,11 +1,11 @@
 // 神话世界·西游记·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 // create by snowcat.c 2/8/1997
 
 inherit __DIR__"ground1";
 
-#include <ground.h>
+#include "ground.h"
 
 void randomize_schedule (mapping events, int total, int sessions)
 {
@@ -29,9 +29,9 @@ void randomize_schedule (mapping events, int total, int sessions)
       k = item[1];
       item[1] = item[3];
       item[3] = k;
-    }  
-    
-    events[i] = events[j];  
+    }
+
+    events[i] = events[j];
     events[j] = item;
   }
 }
@@ -44,7 +44,7 @@ void schedule_teams_dz (mapping teams)
   int nb_teams = teams["number"];
   int i, j, k;
   mapping events = ([ ]);
-  
+
   for (i = 0; i < cycles; i++)
   {
     sessions = 0;
@@ -74,7 +74,7 @@ void schedule_teams_xh (mapping teams)
   int nb_teams = teams["number"];
   int i, j, k, l;
   mapping events = ([ ]);
-  
+
   for (i = 0; i < cycles; i++)
   {
     sessions = 0;
@@ -293,7 +293,7 @@ void announcing_next ()
         teams["current_player0_name"] = teams["current_winner_name"];
         teams["current_player0_id"] = teams["current_winner_id"];
       }
-      
+
       teams["current_player1_name"] = 0;
       teams["current_player1_id"] = 0;
       k = teams[0]["number"];
@@ -303,7 +303,7 @@ void announcing_next ()
         if (find_team_member(team1,teams["current_player0_id"]))
           continue;
         if (k > team1["current_index"])
-        { 
+        {
           k = team1["current_index"];
           j = i;
         }
@@ -347,7 +347,7 @@ void announcing_next ()
       int total = teams["total"];
       int index = teams["index"];
       mapping events = teams["events"];
-   
+
       if (index < total)
       {
         int *item = events[index];
@@ -449,10 +449,10 @@ string report_contest (int brief)
   string name0;
   string name1;
   string msg = "";
-  
+
   if (teams && ! teams["start"])
     return "比赛还没有开始。\n";
-    
+
   if (! teams["current_player0_id"] &&
       (mode != MODE_SINGLE_SD))
     return "赛场尚未准备就绪，请稍候几秒。\n";
@@ -525,7 +525,7 @@ string report_contest (int brief)
         msg += name0+"选手"+teams["current_player0_name"]+
                "("+teams["current_player0_id"]+")"+
                "上场。\n";
-      else         
+      else
         msg += name1+"选手"+teams["current_player1_name"]+
                "("+teams["current_player1_id"]+")"+
                "与"+name0+"选手"+teams["current_player0_name"]+
@@ -535,8 +535,8 @@ string report_contest (int brief)
     }
   }
   if (brief)
-    return msg;          
-  if (!  teams["done"])  
+    return msg;
+  if (!  teams["done"])
     msg += "\n请巫师将他们邀入(summon)场内比赛。\n";
   return msg;
 }
@@ -559,14 +559,14 @@ string report_events (mapping teams)
   int *item;
   int win;
   int i, j;
-   
+
   if (! events)
     return "";
-    
+
   if (teams["done"])
     j = total; // done, index is not incremented
   else
-    j = index - 1;  
+    j = index - 1;
   msg += "比赛结果：\n";
   for (i = 0; i < j; i++)
   {
@@ -581,14 +581,14 @@ string report_events (mapping teams)
     {
       name0 = "";
       name1 = "";
-    }    
+    }
     else
     {
       //name0 = "“"+team0["info"]["team_name"]+"”队选手";
       //name1 = "“"+team1["info"]["team_name"]+"”队选手";
       name0 = "“"+team0["info"]["team_name"]+"”队";
       name1 = "“"+team1["info"]["team_name"]+"”队";
-    }  
+    }
     msg += "  "+to_chinese(i+1)+". ";
     msg += name0+member0["name"]+"("+member0["id"]+")";
     if (win)
@@ -597,10 +597,10 @@ string report_events (mapping teams)
       msg += "输给";
     msg += name1+member1["name"]+"("+member1["id"]+")\n";
   }
-  
+
   if (index >= total)
     return msg;
-    
+
   msg += "即将开始的比赛：\n";
   for (i = index; i < total; i++)
   {
@@ -641,7 +641,7 @@ string report_result  ()
   if (! teams["current_player0_id"] &&
       (mode != MODE_SINGLE_SD))
     return "请稍候几秒，赛场立刻就准备就绪。\n";
-    
+
   switch (mode)
   {
     case MODE_SINGLE_SD:
@@ -649,13 +649,13 @@ string report_result  ()
       msg = report_events (teams);
       if (msg == "")
         msg = "请稍候几秒，比赛立刻就开始。\n";
-      return msg;  
+      return msg;
       break;
     }
     case MODE_SINGLE_LT:
     {
       int current_index;
-      
+
       team0 = teams[0];
       current_index = team0["current_index"];
 
@@ -675,23 +675,23 @@ string report_result  ()
         msg += "。\n";
       }
       msg += report_events (teams);
-/*      
+/*
       msg += "被击败的玩家是：";
       for (i = 0; i < current_index; i++)
       {
         mapping member = team0[i];
-        
+
         if (member["id"] != teams["current_winner_id"])
           msg += member["name"]+"("+member["id"]+") ";
       }
       msg += "\n";
-*/      
+*/
       if (current_index < team0["number"])
         msg += "尚未上场的玩家是：";
       for (i = current_index; i < team0["number"]; i++)
       {
         mapping member = team0[i];
-        
+
         msg += member["name"]+"("+member["id"]+") ";
       }
       msg += "\n";
@@ -724,29 +724,29 @@ string report_result  ()
       for (i = 0; i < teams["number"]; i++)
       {
         int current_index;
-        
+
         team0 = teams[i];
         current_index = team0["current_index"];
         name0 = "“"+team0["info"]["team_name"]+"”队";
         msg += "  "+name0+"：";
         msg += "赢了"+chinese_number(team0["info"]["wins"])+"场，";
         msg += "输了"+chinese_number(team0["info"]["loses"])+"场。\n";
-/*        
+/*
         msg += "    被击败的选手是：";
         for (j = 0; j < current_index; j++)
         {
           mapping member = team0[j];
-          
+
           if (member["id"] != teams["current_winner_id"])
             msg += member["name"]+"("+member["id"]+") ";
         }
         msg += "\n";
-*/ 
+*/
         msg += "    尚未上场的选手是：";
         for (j = current_index; j < team0["number"]; j++)
         {
           mapping member = team0[j];
-        
+
           msg += member["name"]+"("+member["id"]+") ";
         }
         msg += "\n";
@@ -761,7 +761,7 @@ string report_result  ()
       int total = teams["total"];
       int index = teams["index"];
       mapping events = teams["events"];
-   
+
       msg += "总共有"+chinese_number(cycles)+"轮，每轮有"+
               chinese_number(sessions)+"场比赛。\n";
       if (teams["done"])
@@ -769,11 +769,11 @@ string report_result  ()
         msg += "现在赛事已完。\n";
       }
       else if (index/sessions+1 <= cycles)
-      { 
+      {
         msg += "现在是第"+chinese_number((index-1)/sessions+1)+"轮第"+
                 chinese_number((index-1)%sessions+1)+"场，";
         msg += "合计第"+chinese_number(index)+"场。\n";
-      }  
+      }
       msg += "现在上场的是";
       team0 = find_teams_team(teams,teams["current_player0_id"]);
       name0 = "“"+team0["info"]["team_name"]+"”队";
@@ -786,7 +786,7 @@ string report_result  ()
                "与"+name0+"选手"+teams["current_player0_name"]+
                "("+teams["current_player0_id"]+")"+
                "比赛。\n";
-      }  
+      }
       else
         msg += name0+"选手"+teams["current_player0_name"]+
                "("+teams["current_player0_id"]+")"+"。\n";
@@ -800,7 +800,7 @@ string report_result  ()
         msg += "赢了"+chinese_number(team0["info"]["wins"])+"场，";
         msg += "输了"+chinese_number(team0["info"]["loses"])+"场。\n";
       }
-      
+
       msg += report_events (teams);
       break;
     }
@@ -812,7 +812,7 @@ int do_report2()
 {
   string line = "\n-------------------------------------------------------------------\n";
   string msg = line;
-  
+
   msg += "\n";
   msg += "大会比赛阶段：\n";
   msg += "\n";
@@ -838,7 +838,7 @@ int do_check ()
   object who = this_player();
 
   if (step != STEP_FIGHT)
-  {  
+  {
     write ("现在并没有比赛！\n\n");
     return 1;
   }
@@ -852,7 +852,7 @@ int do_contest ()
   object who = this_player();
 
   if (step != STEP_FIGHT)
-  {  
+  {
     write ("现在并没有比赛！\n\n");
     return 1;
   }
@@ -866,7 +866,7 @@ int do_result ()
   object who = this_player();
 
   if (step != STEP_FIGHT)
-  {  
+  {
     write ("现在并没有比赛！\n\n");
     return 1;
   }
@@ -885,7 +885,7 @@ int do_finish ()
   object who = this_player();
 
   if (step != STEP_FIGHT)
-  {  
+  {
     write ("现在并没有比赛！\n\n");
     return 1;
   }
@@ -928,7 +928,7 @@ int do_abort ()
   object who = this_player();
 
 //  if (step != STEP_FIGHT)
-//  {  
+//  {
 //    write ("现在并没有比赛！\n\n");
 //    return 1;
 //  }
@@ -944,16 +944,16 @@ int valid_player (object who)
 {
   int mode = this_room()->query("match/mode");
   mapping teams = this_room()->query("match/teams");
-    
+
   if (mode == MODE_SINGLE_SD)
     return 1;
   if (! teams)
-    return 0;  
+    return 0;
   if (who->query("id") == teams["current_player0_id"])
     return 1;
   if (who->query("id") == teams["current_player1_id"])
     return 1;
-  return 0;  
+  return 0;
 }
 
 int arbit (string arg)
@@ -969,7 +969,7 @@ int arbit (string arg)
   int index;
   int wins;
   object ob;
-  
+
   // check valid fight here:
   team0 = find_teams_team(teams,teams["current_player0_id"]);
   team1 = find_teams_team(teams,teams["current_player1_id"]);
@@ -980,7 +980,7 @@ int arbit (string arg)
   events = teams["events"];
   total = teams["total"];
   index = teams["index"];
-  
+
   wins = (arg  && arg != "0");
 
   if (mode == MODE_SINGLE_SD ||
@@ -988,7 +988,7 @@ int arbit (string arg)
       mode == MODE_TEAM_LT)
   {
     int i, j, k, l;
-    
+
     if (mode == MODE_SINGLE_SD)
     {
       if (teams["number"] == 0)
@@ -1003,14 +1003,14 @@ int arbit (string arg)
         team0 = teams[0];
         team_info0 = team0["info"];
       }
-      team1 = team0;  
-      team_info1 = team_info0;  
+      team1 = team0;
+      team_info1 = team_info0;
       if (find_member_index (team0, teams["current_player0_id"]) == -1)
         add_team_member (team0, find_player(teams["current_player0_id"]),1);
       if (find_member_index (team0, teams["current_player1_id"]) == -1)
         add_team_member (team0, find_player(teams["current_player1_id"]),1);
     }
-        
+
     i = find_team_index (teams, team0);
     j = find_member_index (team0, teams["current_player0_id"]);
     k = find_team_index (teams, team1);
@@ -1019,7 +1019,7 @@ int arbit (string arg)
     {
       events = ([ ]);
       teams["events"] = events;
-    }  
+    }
     events[total] = ({i,j,k,l,wins});
     teams["total"] = total+1;
     teams["index"] = total+2;
@@ -1028,14 +1028,14 @@ int arbit (string arg)
   {
     events[index-1][4] = wins;
   }
-  
+
   if (wins)
   {
     teams["current_winner_name"]  = teams["current_player0_name"];
     teams["current_winner_id"]  =  teams["current_player0_id"];
     if (team_info0)
       team_info0["wins"]++;
-    if (team_info1)  
+    if (team_info1)
       team_info1["loses"]++;
   }
   else
@@ -1044,7 +1044,7 @@ int arbit (string arg)
     teams["current_winner_id"]  =  teams["current_player1_id"];
     if (team_info0)
       team_info0["loses"]++;
-    if (team_info1)  
+    if (team_info1)
       team_info1["wins"]++;
     teams["current_player0_name"] = teams["current_winner_name"];
     teams["current_player0_id"] = teams["current_winner_id"];
@@ -1062,7 +1062,7 @@ int arbit (string arg)
   {
     team_info0 = ([ ]);
     team0["info"] = team_info0;
-  }  
+  }
   if (! team_info0["reward"])
     team_info0["reward"] = ([ ]);
   team_info0["reward"][teams["current_winner_id"]] += REWARD;
@@ -1070,7 +1070,7 @@ int arbit (string arg)
   {
     ob->add("potential",REWARD);
     tell_object (ob,"你获得了"+chinese_number(REWARD)+"点潜能！\n");
-  }  
+  }
   else if (ob && DEBUG)
   {
     //write ("debug:"+ob->query("name")+"获得了"+chinese_number(REWARD)+"点潜能！\n");
@@ -1095,12 +1095,12 @@ int arbit (string arg)
       {
         ob->add("potential",REWARD/4);
         tell_object (ob,"你获得了"+chinese_number(REWARD/4)+"点潜能！\n");
-      }  
+      }
       else if (ob && DEBUG)
       {
         //write ("debug:"+ob->query("name")+"获得了"+chinese_number(REWARD/4)+"点潜能！\n");
       }
-                  
+
     }
   }
   call_out ("announcing_next",3);
@@ -1112,14 +1112,14 @@ void alternative_die (object me)
   int mode = this_room()->query("match/mode");
   mapping teams = this_room()->query("match/teams");
   object ob = me->query_temp("last_opponent");
-  
+
   me->set("kee", 1);
   me->set("sen", 1);
   me->set("eff_kee",me->query("max_kee"));
   me->set("eff_sen",me->query("max_sen"));
   me->remove_all_killer();
   all_inventory(environment(me))->remove_killer(me);
-      
+
   if (! userp(me))
   {
     message_vision ("\n$N重重地摔倒在地，被候在两边的伺官扶走。\n",me);
@@ -1131,21 +1131,21 @@ void alternative_die (object me)
   message_vision ("\n$N慢慢从地上爬将起来，被候在两边的伺官扶起向南走去。\n",me);
   me->move(__DIR__"south");
   message_vision ("$N被人扶着慢慢走了过来。\n",me);
-  
+
   if (! ob)
     ob = me->query_temp("last_damage_from");
   if (! ob)
-    return;  
+    return;
   if (! teams)
-    return;  
+    return;
   if (mode != MODE_SINGLE_LT &&
-      mode != MODE_TEAM_LT)  
+      mode != MODE_TEAM_LT)
   {
     message_vision ("\n几位伺官上来拥着得胜的$N向北走去。\n",ob);
     ob->move(__DIR__"north");
     message_vision ("$N由几位伺官拥着走了过来。\n",ob);
   }
-      
+
   if (mode == MODE_SINGLE_SD)
   {
     teams["current_player0_id"] = ob->query("id");
@@ -1177,7 +1177,7 @@ int do_debug (string arg)
   mapping teams = this_room()->query("match/teams");
   string s0, s1, s2;
   object ob0, ob1;
-  
+
   if (sscanf(arg, "%s %s %s", s0, s1, s2) != 3)
   {
     write ("debug: @debug@ id0 id1 0/1\n");
@@ -1206,7 +1206,7 @@ int do_debug (string arg)
     teams["current_player0_name"] = ob0->query("name");
     teams["current_player1_id"] = s1;
     teams["current_player1_name"] = ob1->query("name");
-  }  
+  }
   if (s0 == "-" && ! teams["current_player0_id"])
   {
     write ("debug: no player ob 0\n");
@@ -1230,4 +1230,3 @@ void init2()
   add_action ("do_abort","abort");
   add_action ("do_debug","@debug@");
 }
- 

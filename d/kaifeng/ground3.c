@@ -1,18 +1,18 @@
 
 // 神话世界·西游记·版本４．５０
 /* <SecCrypt CPL V3R05> */
- 
+
 // create by snowcat.c 2/8/1997
 
 inherit __DIR__"ground2";
 
-#include <ground.h>
+#include "ground.h"
 
 int do_report3()
 {
   string line = "\n-------------------------------------------------------------------\n";
   string msg = line;
-  
+
   msg += "\n";
   msg += "大会结束阶段：\n";
   msg += "\n";
@@ -40,7 +40,7 @@ void order_potentials (mapping potentials)
       if (potentials[j]["pot"] < potentials[j+1]["pot"])
       {
         mapping potential = potentials[j];
-        
+
         potentials[j] = potentials[j+1];
         potentials[j+1] = potential;
       }
@@ -92,7 +92,7 @@ varargs string report_reward (mapping team, int no_team_name, int team_nb)
     msg += "（赢了"+chinese_number(team["info"]["wins"])+"场，";
     msg += "输了"+chinese_number(team["info"]["loses"])+"场）。\n";
      }
-    
+
   msg += "    获奖潜能：";
   for (j = 0; j < team["number"]; j++)
   {
@@ -100,7 +100,7 @@ varargs string report_reward (mapping team, int no_team_name, int team_nb)
     mapping team_info;
     mapping team_reward;
     int pot;
-    
+
     team_info = team["info"];
     if (! team_info)
       continue;
@@ -114,7 +114,7 @@ varargs string report_reward (mapping team, int no_team_name, int team_nb)
   order_potentials (potentials);
   for (j = 0; j < team["number"]; j++)
   {
- 
+
     msg += potentials[j]["name"]+potentials[j]["pot"]+" ";
   }
   msg += "\n";
@@ -133,7 +133,7 @@ string report_score ()
   // teams will be sorted, have to record events first!
   if (! teams["report_events"])
     teams["report_events"] = report_events (teams);
-    
+
   msg += "比赛方式：“"+modes[mode]+"”。\n";
   switch (mode)
   {
@@ -177,7 +177,7 @@ string report_score ()
       int sessions = teams["sessions"];
       int total = teams["total"];
       int index = teams["index"];
-   
+
       msg += "总共有"+chinese_number(cycles)+"轮，每轮有"+
               chinese_number(sessions)+"场比赛。\n";
       msg += "各队战况：\n";
@@ -198,7 +198,7 @@ int do_exam ()
   object who = this_player();
 
   if (step != STEP_FINISH)
-  {  
+  {
     write ("比赛还没有结束！\n\n");
     return 1;
   }
@@ -212,7 +212,7 @@ int do_post ()
   object who = this_player();
 
   if (step != STEP_FINISH)
-  {  
+  {
     write ("比赛还没有结束！\n\n");
     return 1;
   }
@@ -228,14 +228,14 @@ int do_save ()
   string msg;
 
   if (step != STEP_FINISH)
-  {  
+  {
     write ("比赛还没有结束！\n\n");
     return 1;
   }
 
   msg = "\n           ——  ※  ——  ※  ——  ※  ——  ※  ——  \n";
   msg += "\n比赛时间："+ctime(time())+"\n";
-  msg += report_score();  
+  msg += report_score();
   msg += "\n\n";
   log_file("shuiludahui",msg);
   //write_file ("/data/shuiludahui/shdl_result",msg,1);
@@ -266,11 +266,11 @@ int do_close ()
   object who = this_player();
 
   if (step != STEP_FINISH)
-  {  
+  {
     write ("比赛还没有结束！\n\n");
     return 1;
   }
-  
+
   if (! teams["save"])
   {
     write ("比赛成绩尚未存档，您真的要宣布闭幕？(Y/N)\n");
@@ -293,12 +293,12 @@ int do_put () // debug only
   who->set_temp("match",this_room()->query("match"));
   return 1;
 }
-          
+
 int do_get () // debug only
 {
   object who = this_player ();
   mapping match = this_room()->query("match");
-  
+
   this_room()->set("match",who->query_temp("match"));
   return 1;
 }
@@ -312,4 +312,3 @@ void init3()
   add_action ("do_put","@put@");
   add_action ("do_get","@get@");
 }
- 

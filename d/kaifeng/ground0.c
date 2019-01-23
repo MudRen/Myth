@@ -1,10 +1,9 @@
-
 // 神话世界·西游记·版本４．５０
 /* <SecCrypt CPL V3R05> */
  
 // create by snowcat.c 2/8/1997
 
-#include <ground.h>
+#include "ground.h"
 
 object my_room = 0;
 object this_room ()

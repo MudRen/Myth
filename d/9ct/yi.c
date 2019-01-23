@@ -3,7 +3,7 @@
 #include <ansi.h>
 inherit ROOM;
 // inherit "/d/9ct/climbtree.c"; 
-#include <banned.h>
+#include "banned.h"
 string *list=({
         "9ctguai1","9ctguai2",
 });
@@ -120,7 +120,7 @@ int do_exert(string arg) {
 
 int do_climb(string arg)
 {
-        object tianshen; 
+//      object tianshen; 
         object me=this_player();
 
         if( (!arg) || !((arg == "sky") || (arg == "¾ÅÖØÌì")))

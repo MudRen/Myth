@@ -1,6 +1,6 @@
 inherit NPC;
 
-#include <greeting.h>
+#include "greeting.h"
 
 void create()
 {
@@ -25,4 +25,3 @@ void create()
   carry_object("/d/obj/weapon/sword/changjian")->wield();
   carry_object("/d/obj/cloth/changpao")->wear();
 }
-

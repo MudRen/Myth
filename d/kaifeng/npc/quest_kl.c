@@ -1,7 +1,7 @@
 // by snowcat jan 22 1998
 
 #include <ansi.h>
-#include <quest.c>
+#include "quest.c"
 
 // the quest format is the following mapping:
 // daoxing :     type     name     id            object         amount
@@ -260,5 +260,4 @@ mapping quests_kill = ([
  1400000 : ({ "kill", "Å£Ä§Íõ",       "niumo wang",         "", "1" }),
  1500000 : ({ "kill", "¾ÅÍ·Ê¨",       "jiutou shi",         "", "1" }),
 ]);
-
 

@@ -2,7 +2,7 @@
 
 inherit NPC;
 
-#include <reporting.h>
+#include "reporting.h"
 
 void create()
 {
@@ -58,4 +58,3 @@ void reward (object who)
   reporting (who, who->query("quest/reason"), points, "µãÇ±ÄÜ");
   who->add("potential",points);
 }
-

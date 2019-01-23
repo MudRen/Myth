@@ -2,7 +2,7 @@
 
 #include <ansi.h>
 inherit ROOM;
-#include <banned.h>
+#include "banned.h"
 
 void create()
 {
@@ -50,7 +50,7 @@ int do_fillwater(string arg)
 {
         object *list, ob;
         int i, can_fillwater;
-        string dir;
+//      string dir;
 
         if( !arg || arg=="" ) return notify_fail("你要往什么东西里灌水？\n");
 
