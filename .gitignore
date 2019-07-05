@@ -1,5 +1,6 @@
 *DUMP
 .DS_Store
+.vscode
 desktop.ini
 driver
 portbind

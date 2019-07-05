@@ -8,7 +8,7 @@ inherit ITEM;
 void create()
 {
 	mapping name;
-	
+
 	name=NAME2_D->random_name("yuhua");
 	set_name(name["name"], name["id"]);
 
@@ -22,4 +22,3 @@ void create()
 //	set("no_sell", 1);
 	}
 }
-
