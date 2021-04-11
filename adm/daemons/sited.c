@@ -10,8 +10,8 @@ int is_valid(string id, string ip)
 {
         int i;
         if (ip == "127.0.0.1" || ip == "localhost") {
-                if (wiz_level(id)) return 1;
-                return 0;
+                // if (wiz_level(id)) return 1;
+                return 1;
         }
 /*
         if (undefinedp(valid_login[id])) {
@@ -86,7 +86,7 @@ string seek_ip_address(string ip)
                 ip_file = CONFIG_DIR "ipdata3";
         else if (atoi(user_ip[0]) <= 193)
                 ip_file = CONFIG_DIR "ipdata4";
-        else if (atoi(user_ip[0]) == 194 
+        else if (atoi(user_ip[0]) == 194
                  || (atoi(user_ip[0]) == 195 && atoi(user_ip[1]) < 60))
                 ip_file = CONFIG_DIR "ipdata5";
         else if (atoi(user_ip[0]) <= 201)
@@ -125,4 +125,3 @@ string seek_ip_address(string ip)
 #endif
         return "未知IP来源，暂时无法确定";
 }
-

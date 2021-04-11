@@ -1,4 +1,4 @@
-/*  Èı½çÉñ»°¡¤°æ±¾ 1.0 ¡ª¡ª SanJie Myth version 1.0  */ 
+/*  Èı½çÉñ»°¡¤°æ±¾ 1.0 ¡ª¡ª SanJie Myth version 1.0  */
 //
 // logind.c
 //
@@ -36,7 +36,7 @@ object find_body(string name);
 int check_legal_id(string arg);
 int check_legal_name(object, string arg);
 
-void create() 
+void create()
 {
     seteuid(getuid());
     set("channel_id", "Á¬Ïß¾«Áé");
@@ -73,7 +73,7 @@ void logon(object ob)
     write(ESC "[2J");
     color_cat(BANNER);
     write(HIC"\n©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤\n"NOR);
-    write("\n       "HIR"»¶Ó­¹âÁÙ"NOR HIC + CHINESE_MUD_NAME +NOR"ÇëÄúÑ¡ÔñÄãËùÊ¹ÓÃµÄÄÚÂëÖÖÀà(GB/BIG5)\n");
+    write("\n       "HIR"»¶Ó­¹âÁÙ"NOR HIC + CHINESE_MUD_NAME +NOR "ÇëÄúÑ¡ÔñÄãËùÊ¹ÓÃµÄÄÚÂëÖÖÀà(GB/BIG5)\n");
     write("          Welcome to "BLINK HIY"SanJie Myth !"NOR" Select GB or BIG5 (GB/BIG5):");
     input_to((: encoding :), ob);
 #else
@@ -87,7 +87,7 @@ protected void encoding(string arg, object ob)
     object *usr;
     int i, wiz_cnt, ppl_cnt, login_cnt;
     int ctime,utime;
-    
+
     ctime = this_object()->query_temp("clean_time");
     utime = uptime();
     if (utime - ctime >= 300)
@@ -110,7 +110,7 @@ protected void encoding(string arg, object ob)
         input_to( (: encoding :), ob );
         return;
     }
-    
+
     if (__DIR__"band"->is_strict_banned(query_ip_number(ob)) == 1)
     {
         write(HIR"ÄúµÄµØÖ·ÔÚ±¾ MUD Ö®ĞÅÓş±»ÈËÆÆ»µÁË¡£\n"NOR);
@@ -118,7 +118,7 @@ protected void encoding(string arg, object ob)
         log_file( "ALLCONT", sprintf("kicked out, strict_banned\n"));
         return;
     }
- 
+
     write(ESC "[2J");
     color_cat(WELCOME);
 //    write("±¾Õ¾×Ü¹²·ÃÎÊÈË´Î£º" HIY + chinese_number(ppls) + NOR "\n");
@@ -255,8 +255,8 @@ protected void get_id(string arg, object ob)
         write("ÄúµÄÈËÎï´¢´æµµ³öÁËÒ»Ğ©ÎÊÌâ£¬ÇëÀûÓÃ guest ÈËÎïÍ¨ÖªÎ×Ê¦´¦Àí¡£\n");
         destruct(ob);
         return;
-    } 
-  
+    }
+
     write("Ã»ÓĞÕâ¸öÍæ¼Ò£®£®£®\n");
     write("ÄúµÄÓ¢ÎÄÃû×Ö£º£¨ĞÂÍæ¼ÒÇë¼üÈë new ×¢²á£©");
     input_to("get_id", ob);
@@ -325,7 +325,7 @@ protected void get_new_id(string arg, object ob)
         write("\nÇëÄú¸ø×Ô¼ºÈ¡Ò»¸öÓ¢ÎÄÃû×Ö£º");
         input_to("get_new_id",ob);
         return;
-    } 
+    }
 
     confirm_id("Yes", ob);
     return;
@@ -338,10 +338,10 @@ protected void get_passwd(string pass, object ob)
 
     my_pass = ob->query("password");
     ad_pass = ob->query("ad_password");
-    if (! stringp(my_pass) 
-		|| crypt(pass, my_pass) != my_pass ) 
+    if (! stringp(my_pass)
+		|| crypt(pass, my_pass) != my_pass )
     {
-        if (! stringp(ad_pass) 
+        if (! stringp(ad_pass)
 			|| crypt(pass, ad_pass) != ad_pass )
         {
             write("ÃÜÂë´íÎó£¡\n");
@@ -361,7 +361,7 @@ protected void get_passwd(string pass, object ob)
         return;
     }
 
-    if (! stringp(ad_pass)) 
+    if (! stringp(ad_pass))
     {
          write(HIC "\nÇë×¢Òâ£ºÄãµÄIDÄ¿Ç°»¹Ã»ÓĞ¹ÜÀíÃÜÂë£¬ÇëÉèÖÃÄãµÄ¹ÜÀíÃÜÂë¡£\n\n" NOR);
         write(HIG "ÔÚÄãÆÕÍ¨ÃÜÂë¶ªÊ§µÄÇé¿öÏÂ£¬Äã¿ÉÒÔÊäÈë¹ÜÀíÃÜÂë½øÈë£¬²¢ĞŞ¸ÄÆÕÍ¨\n"
@@ -372,7 +372,7 @@ protected void get_passwd(string pass, object ob)
         input_to("reset_ad_password", 1, ob);
         return;
     }
- 
+
     // Check wizpass By Mudring...
     if ((id = ob->query("id")) && wiz_level(id) > 0)
     {
@@ -438,7 +438,7 @@ protected void confirm_reset_ad_password(string pass, object ob)
 protected void check_ok(object ob)
 {
     object user;
-    
+
     // Check if we are already playing.
     user = find_body(ob->query("id"));
 
@@ -584,7 +584,7 @@ protected void confirm_relogin(string yn, object ob, object user)
         write("ÄúÒª½«ÁíÒ»¸öÁ¬ÏßÖĞµÄÏàÍ¬ÈËÎï¸Ï³öÈ¥£¬È¡¶ø´úÖ®Âğ£¿(y/n)");
         input_to("confirm_relogin", ob, user);
         return;
-    }   
+    }
 
     if (yn[0]!='y' && yn[0]!='Y')
     {
@@ -630,7 +630,7 @@ protected void confirm_id(string yn, object ob)
     if (this_object()->query_temp("newid/"+ob->query("id"))){
         write("ÒÑ¾­ÓĞÈËÔÚ×¢²áÕâ¸öidÁË¡£\n");
         destruct(ob);
-        return;             
+        return;
     }
     this_object()->set_temp("newid/"+ob->query("id"),1);
 
@@ -679,7 +679,7 @@ protected void confirm_ad_password(string pass, object ob)
 protected void new_password(string pass, object ob)
 {
     string ad_pass;
-    
+
     write("\n");
     if (strlen(pass) < 5 ) {
         write("ÃÜÂëÖÁÉÙÒªÓÉÎå¸ö×Ö·û×é³É£¬ÇëÖØÉèÄúµÄÃÜÂë£º");
@@ -702,7 +702,7 @@ protected void new_password(string pass, object ob)
 protected void confirm_password(string pass, object ob)
 {
     string id, old_pass;
-    
+
     write("\n");
     old_pass = ob->query_temp("password");
     if( crypt(pass, old_pass)!=old_pass ) {
@@ -880,7 +880,7 @@ protected void get_gender(string gender, object ob)
 
     confirm_gift(user);
     enter_world(ob, user);
-    write("\n");  
+    write("\n");
 }
 
 object make_body(object ob)
@@ -955,7 +955,7 @@ varargs void enter_world(object ob, object user, int silent)
        string *qqfriends;
        object qqob;
        ////////////////
-    
+
     if (!is_root(previous_object()))
         return;
 
@@ -981,10 +981,10 @@ varargs void enter_world(object ob, object user, int silent)
 write(CYN"     ¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô"HIR+MUD_NAME+"Á¬ÏßĞÅÏ¢"NOR CYN"¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô\n");
 write(HIY"     ¡ï  ÄúµÄÏµÍ³È¨ÏŞÄ¿Ç°ÊÇ£º"HIC + wizhood(user) + "\n"NOR);
 write(HIY"     ¡ï  ÄúÉÏ´ÎÁ¬ÏßµÄµØÖ·ÊÇ£º"HIC + ob->query("last_from") + "\n"NOR);
-write(HIY"     ¡ï  ÄúÉÏ´ÎÁ¬ÏßµÄÊ±¼äÊÇ£º"HIC + ctime(ob->query("last_on"))+ "\n"NOR);        
+write(HIY"     ¡ï  ÄúÉÏ´ÎÁ¬ÏßµÄÊ±¼äÊÇ£º"HIC + ctime(ob->query("last_on"))+ "\n"NOR);
 write(HIY"     ¡ï  Äú±¾´ÎÁ¬ÏßµÄÊ±¼äÊÇ£º"HIC + ctime(time()) + "\n"NOR);
 write(HIY"     ¡ï  ÄúÊÇµÚ "HIR+chinese_number(nCount)+NOR HIY" ´ÎÁ¬½Ó"+CHINESE_MUD_NAME+"¡£\n");
-write(NOR CYN"     ¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô\n\n"NOR);        
+write(NOR CYN"     ¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô\n\n"NOR);
 
         if (file_size("/etc/notice") > 0)
         {
@@ -1009,7 +1009,7 @@ write(NOR CYN"     ¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡
             if (startroom[0..2] != "/d/")
                 startroom = START_ROOM;
             if (user->is_ghost())
-                startroom = DEATH_ROOM; 
+                startroom = DEATH_ROOM;
             if ((__DIR__"band"->create_char_banned(ip_number) == 1 ||
                 __DIR__"band"->is_banned(ip_number)== 1) && !wizardp(user))
                 startroom = GUEST_ROOM;
@@ -1027,19 +1027,19 @@ write(NOR CYN"     ¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡Ô¡
 
             tell_room(startroom, user->query("name") +
                       "Á¬Ïß½øÈëÕâ¸öÊÀ½ç¡£\n", ({user}));
-        }      
+        }
 
         ip_from = __DIR__"sited"->seek_ip_address(ip_number);
         CHANNEL_D->do_channel(this_object(), "sys",
             sprintf(NOR WHT "%sÓÉ " HIG "%s" NOR WHT "Á¬Ïß½øÈë,IPÀ´×Ô£º"HIG"%s"NOR,
                     user->name() + "(" + capitalize(user->query("id")) + ")",
-                    ip_number, ip_from));  
+                    ip_number, ip_from));
 
         NEWS_D->prompt_user(user);
         __DIR__"maild"->check_mail(user);
     }
 
-    if (//wizhood(user) != "(admin)" && 
+    if (//wizhood(user) != "(admin)" &&
         EXAMINE_D->query("log_by/" + user->query("id")))
         user->start_log();
 
@@ -1087,7 +1087,7 @@ varargs void reconnect(object ob, object user, int silent)
     object old_link;
 
     old_link = user->query_temp("link_ob");
-    
+
     if (old_link && old_link!=ob)
         destruct(old_link);
 
@@ -1114,7 +1114,7 @@ int check_legal_id(string id)
     string *legalid;
 
     i = strlen(id);
-  
+
     if (i < 3 || i > 8 )
     {
         write("¶Ô²»Æğ£¬ÄãµÄÓ¢ÎÄÃû×Ö±ØĞëÊÇ 3 µ½ 8 ¸öÓ¢ÎÄ×ÖÄ¸¡£\n");
@@ -1127,9 +1127,9 @@ int check_legal_id(string id)
             return 0;
         }
     legalid = explode(read_file(BANNED_ID), "\n");
-    for (i=0; i<sizeof(legalid); i++)  
+    for (i=0; i<sizeof(legalid); i++)
     {
-        if ( id == legalid[i] )  
+        if ( id == legalid[i] )
         {
             write("¶Ô²»Æğ£¬ÕâÖÖÃû×Ö»áÔì³ÉÆäËûÈËµÄÀ§ÈÅ¡£\n");
             return 0;
@@ -1175,4 +1175,3 @@ int set_wizlock(int level)
     wiz_lock_level = level;
     return 1;
 }
-
